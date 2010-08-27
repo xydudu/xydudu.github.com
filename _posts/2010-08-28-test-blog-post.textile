@@ -1,6 +1,6 @@
 ---
 layout: default
-title: First Post
+title: test blog from github
 ---
 
 hello world!
