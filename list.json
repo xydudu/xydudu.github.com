@@ -1,0 +1,14 @@
+---
+layout: jsonlist
+title: test
+---
+[
+{% for post in site.posts %}
+{
+time: "{{ post.date | date:"%Y-%m-%d" }}",
+url: "{{ post.url }}",
+title: "{{ post.title }}"
+}
+{% endfor %}
+]
+
