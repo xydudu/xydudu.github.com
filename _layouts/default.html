@@ -9,6 +9,7 @@
         h1 { color: red; font-family: 'Vollkorn', serif; text-shadow: 2px 2px 2px #aaa; letter-spacing: 0.066em; word-spacing: 0.15em; line-height: 1.16em;} 
         h1 a { font-size: .5em; font-weight: 200; text-shadow: none; font-family: "Trebuchet MS",Verdana,Helvetica,Arial,sans-serif;}
         h2 { clear: both }
+        h2 cite{ font-size: .5em; color:gray; font-width: 200 }
         li { font-size: .8em; }
         #foot { color:gray; font-size: .8em; clear: both }
         #content { line-height: 1.8em}
@@ -16,10 +17,22 @@
 </head>
 <body>
     <h1>DUDU's New Life <a href="http://twitter.com/xydudu">@xydudu</a></h1> 
-    <h2>{{page.title}}</h2>
-    <div id="content">   
+    <h2>{{page.title}} <cite>{{post.data}}</cite></h2>
+    <p><a href="http://xydudu.com" >>>back to home</a></p>
+    <div id="content"> 
         {{content}}
     </div>
     <p id="foot">xydudu 2010 @ Make life better than it was before!</p>
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17348181-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </body>
 </html>
