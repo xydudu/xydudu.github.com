@@ -8,7 +8,8 @@ title: test
 time: "{{ post.date | date:"%Y-%m-%d" }}",
 url: "{{ post.url }}",
 title: "{{ post.title }}"
-}
+},
 {% endfor %}
+{}
 ]
 
