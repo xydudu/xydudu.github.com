@@ -81,7 +81,7 @@ h3. 利用PHP压缩JS文件为二进制PNG图片
 
 h3. 参考资料
 
-* 'Compress CSS and JavaScript Using PNGs and Canvas':http://www.sitepoint.com/blogs/2010/09/07/compress-css-javascript-png-canvas/
-* 'PNGStore - Embedding compressed CSS & JavaScript in PNGs':http://www.iamcal.com/png-store/
+* "Compress CSS and JavaScript Using PNGs and Canvas":http://www.sitepoint.com/blogs/2010/09/07/compress-css-javascript-png-canvas/
+* "PNGStore - Embedding compressed CSS & JavaScript in PNGs":http://www.iamcal.com/png-store/
 
 
