@@ -15,11 +15,64 @@ h3. 利用PHP压缩JS文件为二进制PNG图片
 
 修改一下代码：
 
-{% highlight php %}
+{% highlight php lineno %}
     <?php
         encode_file('x.js', 'x');
         //改成你要转换的js文件，和文件名
 {% endhighlight %}
 
 哦，还有生成的图片的文件夹你也改一下吧。。这个文件会生成很多的图片，作者是个有耐心的人，每种转换方法都生成测试了一下，我则要偷懒很多，直接在里面选了个小的可以用的，大概就是文件名后缀 **_ascii_24b_square.png**，当然你也可以每一个图片都测试下的。
+
+现在得到了一张PNG图片，开始解码吧！
+
+{% highlight javascript lineno %}
+    var 
+    //创建一个canvas，并取得其可操作的画布对象
+    canvas = document.createElement("canvas"),
+    ctx = canvas.getContext("2d");
+    //创建一个图片，用来load那张JS转换后的PNG图片
+    img = new Image();
+
+    //下面几行是为了在页面上看不到这个图片
+    img.style.position = "absolute";
+    img.style.left = "-10000px";
+    document.body.appendChild(img);
+
+    //图片加载完后开始解压操作
+    img.onload = function() {
+        var 
+        w = this.offsetWidth,
+        h = this.offsetHeight;
+
+        canvas.width = w;
+        canvas.height = h;
+        canvas.style.width = w+"px";
+        canvas.style.height = h+"px";
+       
+        //把图片渲染到画布中
+        ctx.drawImage(this, 0, 0);
+
+        var 
+        //取得已渲染画布的数据
+        data = ctx.getImageData(0, 0, w, h).data,
+        a = [],
+        len = data.length,
+        p = -1;
+        
+        //遍例获得的数据，筛选需要的数据
+        for (var i=0; i<len; i+=4) {
+            if (data[i] > 0)
+                a[++p] = String.fromCharCode(data[i]);
+        };
+        
+        //执行JS
+        eval(a.join(""));
+        
+        //移除图片
+        document.body.removeChild(img);
+    };
+    //这里设定图片的地址
+    img.src = 'x.png';
+{% endhighlight %}
+
 
