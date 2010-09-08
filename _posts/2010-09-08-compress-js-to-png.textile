@@ -14,13 +14,6 @@ h3. 利用PHP压缩JS文件为二进制PNG图片
 "Cal Henderson":http://www.iamcal.com/png-store/ 公布了他在这方面的研究，并可以 "github":http://github.com/iamcal/PNGStore 上找到其相关代码。因为我只对PHP熟悉，所以我只用了其中的一个文件 "bake.php":http://github.com/iamcal/PNGStore/blob/master/bake.php
 
 修改一下代码：
-{% highlight php %}
-    <?php
-    
-    encode_file('你要转换的JS的路径', '转换后的文件名');
-    
-    ?>
-{% endhighlight %}
 
 哦，还有生成的图片的文件夹你也改一下吧。。这个文件会生成很多的图片，作者是个有耐心的人，每种转换方法都生成测试了一下，我则要偷懒很多，直接在里面选了个小的可以用的，大概就是文件名后缀 **_ascii_24b_square.png**，当然你也可以每一个图片都测试下的。
 
