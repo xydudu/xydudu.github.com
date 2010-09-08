@@ -10,6 +10,7 @@ title: Compress JS to PNG
     * 利用 **canvas** 的 **drawImage**，和 **getImageData** 方法把二进制的图片还原成JS源码
 
 h3. 利用PHP压缩JS文件为二进制PNG图片
+
 "Cal Henderson":http://www.iamcal.com/png-store/ 公布了他在这方面的研究，并可以 "github":http://github.com/iamcal/PNGStore 上找到其相关代码。因为我只对PHP熟悉，所以我只用了其中的一个文件 "bake.php":http://github.com/iamcal/PNGStore/blob/master/bake.php
 
 修改一下代码：
