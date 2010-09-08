@@ -1,0 +1,15 @@
+---
+layout: default
+title: Compress JS to PNG
+---
+
+首先这是属于奇淫巧技，只做研究，不必认真。当然也不能排除其可能的小宇宙。
+
+这里要说的是把JS压缩为一张PNG图片，极度变态的减小JS的体积。原理简单来说就是两步：
+    * 把JS文件用 **php** 、**python** 等压缩成二进制的图片（PNG格式为压缩比最好的图片格式）
+    * 利用 **canvas** 的 **drawImage**，和 **getImageData** 方法把二进制的图片还原成JS源码
+
+h1.利用PHP压缩JS文件为二进制PNG图片
+"Cal Henderson":http://www.iamcal.com/png-store/ 公布了他在这方面的研究，并可以 "github":http://github.com/iamcal/PNGStore 上找到其相关代码。因为我只对PHP熟悉，所以我只用了其中的一个文件 "bake.php":http://github.com/iamcal/PNGStore/blob/master/bake.php
+
+
