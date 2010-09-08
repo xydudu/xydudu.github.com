@@ -75,4 +75,13 @@ h3. 利用PHP压缩JS文件为二进制PNG图片
     img.src = 'x.png';
 {% endhighlight %}
 
+这个压缩量确实还蛮大的，我把一个100K的JS文件压到了30K。关于节约掉70K的体积会有什么好处，已经解压带来的时间性能问题，这是需要权衡的。
+
+还有一个悲剧的情况是，IE9下是不支持的，IE9有没有问题我不知道，没装。看网上讨论，估计是有的。
+
+h3. 参考资料
+
+* 'Compress CSS and JavaScript Using PNGs and Canvas':http://www.sitepoint.com/blogs/2010/09/07/compress-css-javascript-png-canvas/
+* 'PNGStore - Embedding compressed CSS & JavaScript in PNGs':http://www.iamcal.com/png-store/
+
 
