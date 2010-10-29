@@ -1,6 +1,6 @@
 ---
 layout: default
-title: How to upload a photo to GAE which large than 1MB
+title: Make A Photo Gallery On GAE (1): How To Upload And Display?
 ---
 
 h3. 引子
@@ -15,6 +15,8 @@ h3. 引子
 些，于是加一个上传图片并且插入到文章中来的功能就很紧要了。
 
 为了堂客，努力钻研！
+
+下面将一步一步的讲解如何在GAE上搭建这样一个系统。
 
 h3. 上传图片到GAE
 
@@ -59,7 +61,7 @@ h3. 上传图片到GAE
 
 上传成功后，如何取出照片并显示呢？扩展上面的代码：
 
-h4. 改下main.get
+改下 **main.get**
 {% highlight python linenos %}
     
     def get(self):
@@ -85,7 +87,7 @@ h4. 改下main.get
 
 {% endhighlight %}
 
-h4. 增加class Image
+**增加class Image**
 {% highlight python linenos %}
     
     class Image(webapp.RequestHandler):
@@ -99,7 +101,7 @@ h4. 增加class Image
 
 {% endhighlight %}
 
-h4. 还有增加一个 photo 的 URL
+**还有增加一个 photo 的 URL**
 {% highlight python linenos %}
 
     wsgiref.handlers.CGIHandler().run(webapp.WSGIApplication( [
@@ -108,3 +110,11 @@ h4. 还有增加一个 photo 的 URL
         ], debug=True))
 
 {% endhighlight %}
+
+OK，基本上整个上传，显示的过程就完事了。这样简单的东西，当然是不能交差的。接下来，需要做的是：
+    * 生成缩略图
+    * 美化照片列表
+    * 单张照片显示
+
+
+
