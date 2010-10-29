@@ -5,7 +5,7 @@ title: Make A Photo Gallery On GAE (1) --- How To Upload And Display
 
 h3. 引子
 
-为给屋里堂客搭 'blog':http://www.danielly.me，开始接触GAE，实在不喜折腾服务器，空间之类，有GAE如此好的服务，为何不用呢？但悲剧的是想要GAE，得先JAVA或Python，一直以来对JAVA的恐惧，让我选择Python，至少身边Python牛人很多，有请教的对象，就啥都不用怕了。
+为给屋里堂客搭 "blog":http://www.danielly.me，开始接触GAE，实在不喜折腾服务器，空间之类，有GAE如此好的服务，为何不用呢？但悲剧的是想要GAE，得先JAVA或Python，一直以来对JAVA的恐惧，让我选择Python，至少身边Python牛人很多，有请教的对象，就啥都不用怕了。
 
 于是先写个简单的东西练练手： "download movies":http://movie.danielly.me/ 
 然后用 "picky":http://picky.olivida.com/picky 简单的搭了个 "blog":http://www.danielly.me 交差，当然不能这样对堂客，她想能在写文章的时候插些图片进去，但是picky没有这功能，只能外链图片贴地址过来，这样对于堂客这样的小白用户来说，未免太高级了些，于是加一个上传图片并且插入到文章中来的功能就很紧要了。
