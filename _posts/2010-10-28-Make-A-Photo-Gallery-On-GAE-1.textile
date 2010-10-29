@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Make A Photo Gallery On GAE (1): How To Upload And Display?
+title: Make A Photo Gallery On GAE (1) --- How To Upload And Display
 ---
 
 h3. 引子
