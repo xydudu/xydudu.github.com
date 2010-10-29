@@ -22,22 +22,15 @@
     <div id="content"> 
         {{content}}
     </div>
-
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      /**
-        * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
-        */
-      (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = 'http://xydudu.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    
     <p><a href="http://xydudu.com" >Back to Home</a></p>
+    <div id="disqus_thread"></div>
     <p id="foot">xydudu 2010 @ Make life better than it was before!</p>
     <script>
+        (function() {
+           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+           dsq.src = 'http://xydudu.disqus.com/embed.js';
+           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
         var disqus_shortname = 'xydudu';
         (function () {
           var s = document.createElement('script'); s.async = true;
