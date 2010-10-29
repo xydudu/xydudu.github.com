@@ -1,0 +1,27 @@
+---
+layout: default
+title: Make A Photo Gallery On GAE (2) --- Resize Photos And List Them 
+---
+
+h3. 生成缩略图 
+
+前面简单的实现了上传的功能，接着来处理图片，使其更好的展示出来。首先是搞清楚如何生成比例合适的缩略图。
+引入GAE提供的 **Image** 模块，查看文档："The Image Class":http://code.google.com/appengine/docs/python/images/imageclass.html#Image
+我们需要用到的是 **resize()** 方法，改写前面的代码：
+
+{% highlight python linenos %}
+    
+    # 增加一个字段存放缩略图
+    class Photos(db.Model):
+        photo = db.BlobProperty()
+        thumbnail = db.BlobProperty()
+
+    # 把经过resize后的图片存入thumbnail中
+    p.thumbnail = db.Blob(images.resize(img, 72, 72))
+
+{% endhighlight %}
+
+显示缩略图与显示原图一样的原理，运用前面的Image，修改一下，传入size为 “S” 时显示thumbnail里的内容便可。
+
+这里只是简单的用resize缩小了图片的尺寸，虽然images模块够智能，但还是不合我的要求，我需要生成一张长和宽都为72的正方形缩略图，多余的切除，且尽可能的显示更多的信息。
+继续查文档，发现了 **crop(left_x, top_y, right_x, bottom_y)** 方法，应该有用，开始构建代码。
