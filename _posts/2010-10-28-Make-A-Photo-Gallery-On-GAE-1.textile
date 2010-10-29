@@ -17,7 +17,7 @@ h3. 引子
 h3. 上传图片到GAE
 
 从零开始，把堂客照片放电脑前，不畏艰难苦困再眼睛痛，先搞清楚最基本的：如何把照片上传上去？
-对着文档　"The Images Python API":http://code.google.com/appengine/docs/python/images/ ， 可知上传图片就是把图片保存到 **Datastore** 的过程。先折腾一个demo上去看看：
+对着文档 "The Images Python API":http://code.google.com/appengine/docs/python/images/ ， 可知上传图片就是把图片保存到 **Datastore** 的过程。先折腾一个demo上去看看：
 
 {% highlight python linenos %}
 
