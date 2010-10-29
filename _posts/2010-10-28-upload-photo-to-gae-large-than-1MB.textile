@@ -1,0 +1,64 @@
+---
+layout: default
+title: How to upload a photo to GAE which large than 1MB
+---
+
+h3. 引子
+
+为给屋里堂客搭 'blog':http://www.danielly.me，开始接触GAE，实在不喜折腾服务器，空间之类，有GAE如此好的服务，为何不用呢？
+但悲剧的是想要GAE，得先JAVA或Python，一直以来对JAVA的恐惧，让我选择Python，至少身边Python牛人很多，有请教的对象，就啥都
+不用怕了。
+
+于是先写个简单的东西练练手： 'download movies':http://movie.danielly.me/ 
+然后用 'picky':http://picky.olivida.com/picky 简单的搭了个 'blog':http://www.danielly.me 交差，当然不能这样对堂客，她想
+能在写文章的时候插些图片进去，但是picky没有这功能，只能外链图片贴地址过来，这样对于堂客这样的小白用户来说，未免太高级了
+些，于是加一个上传图片并且插入到文章中来的功能就很紧要了。
+
+为了堂客，努力钻研！
+
+h3. 上传图片到GAE
+
+从零开始，把堂客照片放电脑前，不畏艰难苦困再眼睛痛，先搞清楚最基本的：**如何把照片上传上去？**
+对着文档　'The Images Python API': http://code.google.com/appengine/docs/python/images/，可知上传图片就是把图片保存到 **Datastore** 的过程。先折腾一个demo上去看看：
+
+{% highlight python linenos %}
+
+    from google.appengine.ext import db
+    from google.appengine.ext import webapp
+    import wsgiref.handlers
+
+    class Photos(db.Model):
+        photo = db.BlobProperty()
+
+    class main(webapp.RequestHandler):
+        def get(self):
+            self.response.out.write("""
+                    <form action="/" enctype="multipart/form-data" method="post">
+                    <div><label>upload what:</label></div>
+                    <div><input type="file" name="img"/></div>
+                    <div><input type="submit" value="upload"></div>
+                    </form>
+                    </body>
+                    </html>""")
+
+
+        def post(self):
+            p = Photos()
+            p.photo = db.Blob(self.request.get("img"))
+            p.put()
+            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.out.write('OK, upload is done!')
+
+    if __name__ == '__main__':
+        wsgiref.handlers.CGIHandler().run(webapp.WSGIApplication( [('/', main)], debug=True))
+
+{% endhighlight %}
+
+把上页的代码上传，配置好app.yaml，你就可以看到一个简单的图片上传已经可以运行了，非常的简单。你要注意的其实就是记得把存图
+片的字段设定为 Blob类型。
+
+上传成功后，如何取出照片并显示呢？扩展上面的代码：
+
+
+
+
