@@ -9,8 +9,8 @@ h3. 引子
 但悲剧的是想要GAE，得先JAVA或Python，一直以来对JAVA的恐惧，让我选择Python，至少身边Python牛人很多，有请教的对象，就啥都
 不用怕了。
 
-于是先写个简单的东西练练手： 'download movies':http://movie.danielly.me/ 
-然后用 'picky':http://picky.olivida.com/picky 简单的搭了个 'blog':http://www.danielly.me 交差，当然不能这样对堂客，她想
+于是先写个简单的东西练练手： "download movies":http://movie.danielly.me/ 
+然后用 "picky":http://picky.olivida.com/picky 简单的搭了个 "blog":http://www.danielly.me 交差，当然不能这样对堂客，她想
 能在写文章的时候插些图片进去，但是picky没有这功能，只能外链图片贴地址过来，这样对于堂客这样的小白用户来说，未免太高级了
 些，于是加一个上传图片并且插入到文章中来的功能就很紧要了。
 
@@ -18,8 +18,8 @@ h3. 引子
 
 h3. 上传图片到GAE
 
-从零开始，把堂客照片放电脑前，不畏艰难苦困再眼睛痛，先搞清楚最基本的：**如何把照片上传上去？**
-对着文档　'The Images Python API': http://code.google.com/appengine/docs/python/images/，可知上传图片就是把图片保存到 **Datastore** 的过程。先折腾一个demo上去看看：
+从零开始，把堂客照片放电脑前，不畏艰难苦困再眼睛痛，先搞清楚最基本的：如何把照片上传上去？
+对着文档　"The Images Python API": http://code.google.com/appengine/docs/python/images/，可知上传图片就是把图片保存到 **Datastore** 的过程。先折腾一个demo上去看看：
 
 {% highlight python linenos %}
 
@@ -55,10 +55,56 @@ h3. 上传图片到GAE
 {% endhighlight %}
 
 把上页的代码上传，配置好app.yaml，你就可以看到一个简单的图片上传已经可以运行了，非常的简单。你要注意的其实就是记得把存图
-片的字段设定为 Blob类型。
+片的字段设定为 **Blob** 类型。
 
 上传成功后，如何取出照片并显示呢？扩展上面的代码：
 
+h4. 改下main.get
+{% highlight python linenos %}
+    
+    def get(self):
+        photos = Photos.all()
+        if photos is not None:
+            self.response.out.write('''
+                    <h3>Photos</h3>
+                    <ul>
+                    ''')
+            for p in photos:
+                self.response.out.write('<li><img src="photo?pid=%s"/></li>' % p.key())
 
 
+        self.response.out.write("""
+                <h3>Upload Photo</h3>
+                <form action="/" enctype="multipart/form-data" method="post">
+                <div><label>upload what:</label></div>
+                <div><input type="file" name="img"/></div>
+                <div><input type="submit" value="upload"></div>
+                </form>
+                </body>
+                </html>""")
 
+{% endhighlight %}
+
+h4. 增加class Image
+{% highlight python linenos %}
+    
+    class Image(webapp.RequestHandler):
+        def get(self):
+            p = db.get(self.request.get('pid'))
+            if p.photo:
+                self.response.headers['Content-Type'] = "image/png"
+                self.response.out.write(p.photo)
+            else:
+                self.error(404)
+
+{% endhighlight %}
+
+h4. 还有增加一个 photo 的 URL
+{% highlight python linenos %}
+
+    wsgiref.handlers.CGIHandler().run(webapp.WSGIApplication( [
+        ('/', main), 
+        ('/photo', Image)
+        ], debug=True))
+
+{% endhighlight %}
