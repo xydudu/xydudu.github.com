@@ -36,6 +36,7 @@ h3. 生成缩略图
     * 用corp剪切为边长为72的图片(切中间部分)
 
 下面是相应的代码：
+
 {% highlight python linenos %}
         
         def square(self, size, data):
@@ -54,6 +55,7 @@ h3. 生成缩略图
 {% endhighlight %}
 
 注意： python的除法，默认是整除，可能会有点不精确，在文件的顶部加入：
+
 {% highlight python linenos %}
 
     from __future__ import division
