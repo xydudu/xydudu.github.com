@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!--
+
+    ***************************************************
+    *                                                 *
+    * DZ-Slides: HTML Template for your presentations *
+    *                                                 *
+    ***************************************************
+      More information: http://paulrouget.com/dzslides
+
+
+    Author: @paulrouget <paul@mozilla.com>
+
+    Contributor(s):
+      - Anthony Ricaud <rik24d@gmail.com>
+      - Louis-Rémi Babé <lrbabe@gmail.com>
+
+
+    LICENSE:
+      DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+      Version 2, December 2004
+
+      Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+      Everyone is permitted to copy and distribute verbatim or modified
+      copies of this license document, and changing it is allowed as long
+      as the name is changed.
+
+      DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+      TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+      0. You just DO WHAT THE FUCK YOU WANT TO.
+
+
+    -->
+
+
+
+    <title>Honey, Do it now!</title>
+
+        <!--
+        ************************************
+        *                                  *
+        *               CSS                *
+        *                                  *
+        ************************************
+        -->
+
+
+      <style>
+        /*
+        ************************************
+        *    CSS CORE:                     *
+        *    YOU DON'T WANT TO EDIT THIS   *
+        *    (but you can)                 *
+        ************************************
+        */
+
+        html { overflow: hidden; }
+        body, html { height: 100%; padding: 0px; }
+        body { margin: auto; position: relative; }
+        img, video { vertical-align: middle; }
+        /* FIXME : Mandatory for flex box model, Firefox bug */
+        /* See JS hack */
+        section > div { width: 100%; display: -moz-box; -moz-box-orient : vertical; -moz-box-pack : center; -moz-box-align : center; }
+        section > div { width: 100%; display: -webkit-box; -webkit-box-orient : vertical; -webkit-box-pack : center; -webkit-box-align : center; }
+        footer { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; position: absolute; bottom: 0; padding: 1em; width: 100%; }
+        .flex-wrapper { display: -moz-box; display: -webkit-box; -moz-box-orient: horizontal; -webkit-box-orient: horizontal; width: 100%; }
+        footer .flex-space { -moz-box-flex: 1; -webkit-box-flex: 1; }
+        section { -moz-transition-property: -moz-transform, opacity; -moz-transition-duration: 1s, 1s; pointer-events: none; display: block; width: 100%; margin: auto; position: absolute; padding: 0 10px; opacity: 0; -moz-box-sizing: border-box; }
+        section { -webkit-transition-property: -webkit-transform, opacity; -webkit-transition-duration: 1s, 1s; pointer-events: none; -webkit-box-sizing: border-box; }
+        section h1, section h2, section h3, section p { text-align: center; margin: .3em; margin: 0; padding: 0; }
+        section[aria-selected] { opacity: 1; pointer-events: auto; -moz-transition-delay: 1s, 1s; -webkit-transition-delay: 1s, 1s; }
+        pre { font-size: 35px; border-left: 6px solid white; padding-left: 10px; white-space: pre-wrap;       /* css-3 */ word-wrap: break-word;       /* Internet Explorer 5.5+ */ line-height: 1.3em; } 
+        a { color: white!important; text-decoration: none; }
+
+        /*
+        ************************************
+        *    CSS OPTIONS:                  *
+        *    YOU WANT TO EDIT THIS         *
+        *                                  *
+        ************************************
+        */
+
+        /* Want your own font? Use font-face */
+        @font-face  {
+          /* Uncomment and add your own font file
+          font-family: fface;
+          src: url(myfont.ttf);
+          */
+        }
+
+        /* The backgrounds of all your slides */
+        body {
+          /* Could be an image, a color, a gradient */
+          background-image: -moz-radial-gradient( 50% 30% 90deg, circle, #006EA0 0%, #304160 600px);
+          background-image: -webkit-gradient(radial, 50% 30%, 0, 50% 30%, 600, from(#006EA0), to(#304160));
+          background-color: #006EA0;
+        }
+
+        /* This is the style of a slide */
+        section {
+          font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+          font-weight: bold;
+          font-size: 60px;
+          text-shadow: 0px -2px 0px #374683;
+          color: white;
+          /*
+          Your own font?
+          font-family: fface;
+          */
+        }
+
+        /* This part define the transitions between the slides
+           Here I propose 3 differents effect:
+             Default translation (classic "sliding" effect)
+             Rotation (a bit dizzy... "DZ"? You get it? \o/)
+             Nothing (just a fadein/fadeout)
+           With the CSS3 transformations, you can create your own.
+         */
+
+
+        /* Let me describe how the slides work:
+           A slide can be:
+           - the current slide
+           - A upcoming slide (from the "future")
+           - A slide already seen (from the "past")
+           With CSS, you describe where are those slide,
+           in the space. Then, a transition will animate
+           this.
+        */
+
+
+
+        /* "PAST" ******************************/
+        section {
+
+          /* The sliding effect */
+          -moz-transform: translate(-100%, 0);
+          -webkit-transform: translate(-100%, 0);
+
+          /* The rotating effect
+          -moz-transform: scale(0.3) rotate(180deg);
+          -webkit-transform: scale(0.3) rotate(180deg);
+          */
+
+          /* The nothing effect */
+          /* Well, just comment out the rotating and sliding effect*/
+
+        }
+
+        /* The footer with the title + the current slide number */
+        #footer {
+          display: block;
+          color: white;
+          opacity: 0.5;
+
+          /*
+          display: none;
+          */
+        }
+
+
+        /* "PRESENT" ****************************/
+        /* Current slide */
+        section[aria-selected] {
+          -moz-transform: scale(1.0) translate(0, 0);
+          -webkit-transform: scale(1.0) translate(0, 0);
+        }
+
+        /* "FUTURE" *****************************/
+        /* Selector not yet supported by Webkit :( */
+        section[aria-selected] ~ section {
+
+          /* The sliding effect */
+          -moz-transform: translate(100%, 0);
+          -webkit-transform: translate(100%, 0);
+
+          /* The rotating effect
+          -moz-transform: scale(5) rotate(-180deg);
+          -webkit-transform: scale(5) rotate(-180deg);
+          */
+
+          /* The nothing effect */
+          /* Well, just comment the rotating and sliding effect*/
+
+
+        }
+
+        .min-li {
+            font-size: 40px;
+        }
+
+      </style>
+    </head>
+
+        <!--
+        ************************************
+        *                                  *
+        *        HTML: YOUR SLIDES         *
+        *                                  *
+        ************************************
+        -->
+
+      <section>
+        <h1>Honey is coming!</h1>
+        <img src="http://xydudu.com/honey.png">
+      </section>
+
+      <section>
+        <h1>Why Honey?</h1>
+        <ul>
+            <li>Honey (蜂蜜；宝贝；甜蜜) 写出代码的甜蜜</li>
+            <li>简写 <strong>HN</strong> , <strong>HuNan</strong> 之意。</li> 
+        </ul>
+      </section>
+
+      <section>
+        <h2>javascript文件目录</h2>
+        <ul class="min-li">
+            <li>hn.min.js Honey 核心文件</li>
+            <li>hn.config.js Honey 配置文件</li> 
+            <li>lib/ 文件夹，存放用到的外部库文件，如：jquery, YUI，极度公用 </li>
+            <li>mod/ 文件夹，存放用到的模块文件， 如：ajax, slide 极度公用</li>
+            <li>extend/ 文件夹，存放网站扩展，特定页面调用</li>
+            <li>demos/ 文件夹，存放示例代码</li>
+            <li>image/ 文件夹，存放模块相应图片</li>
+            <li>swf/ 文件夹，存放模块需要SWF文件</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>文件命名规范<h2>
+        <p>{name}.min.js</p>
+        
+      </section>
+
+    <section>
+        <ul>
+            <li> 对应必须要有 {name}.source.js</li>
+            <li>source为源文件，min为对应的压缩文件</li>
+        </ul>
+    </section>    
+    
+      <section>
+        <h1>绝对不能做的事</h1>
+      </section>
+
+    <section>
+        <ul>
+            <li>定义全局变量</li>
+            <li>设定 document.domain</li>
+        </ul>
+    </section>    
+
+      <section>
+        <h1>不可忘记的事</h1>
+      </section>
+
+        <section>
+            <h2>hn.config.js</h2>
+            <pre>
+            'ajax': [
+                'mod/ajax.min.js',
+                'xydudu',
+                '7/21/2010'
+            ]
+            </pre>
+        </section>    
+
+      <section>
+        <ul>
+            <li>提交文件应有对应的source文件。</li>
+            <li>min文件一定要压缩，min和souce文件一定要保持同步。</li>
+            <li>在页面上编写代码的时候，请使用 *HN.go()* 函数。</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h1>Ok, Let's go to Rocks</h1>
+      </section>
+    
+      <section>
+        <h2>打开调试模式</h2>
+        <pre>HN.openDevMode()</pre>
+      </section>
+    
+      <section>
+        <ul>
+            <li>出现debug信息</li>
+            <li>引入 source 文件</li>
+        </ul>
+      </section>
+      
+    <section>
+        <h2>HN.debug($msg)</h2>
+        <p>把调试信息输出到log面板</p>
+    </section>
+
+    <section>
+        <h2>HN.go()</h2>
+    </section>
+
+    <section>
+<pre>
+    HN.go($files, $fun);
+</pre>
+        <ul class="min-li">
+            <li>$files 为需要引入的框架，模块，文件</li>
+            <li>$fun 执行函数，引入文件载入后执行的函数</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>ajax 模块</h2>
+    </section>
+
+    <section>
+        <h2>4个方法</h2>
+        <ul class="min-li">
+            <li>HN.ajax.post POST请求</li>
+            <li>HN.ajax.get GET请求</li>
+            <li>HN.ajax.xPost 跨域POST请求</li>
+            <li>HN.ajax.xGet 跨域GET请求</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4个参数</h2>
+        <ul class="min-li">
+            <li>url 请求地址 (必需)</li>
+            <li>data 传给服务端数据，格式JSON：{ data: $data } (不需要时传空对象)</li>
+            <li>ok 成功执行函数 (必需)</li>
+            <li>fail 失败执行函数 (可不填)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>HN.ajax.post 调用示例</h2>
+    </section>
+    
+    <section>
+<pre>
+    var 
+    data = {data: 'this is from html'},
+    url = 'test-mod-ajax-post.php';
+    
+    HN.ajax.post(url, data, function($data) {
+        //handle success
+    }, function() {
+        //handle error    
+    });
+</pre>
+    </section>
+
+    <section>
+        <h2>服务端返回格式</h2>
+<pre>
+    {err: 0/1, data: data from server-side}
+</pre>
+    </section>
+
+    <section>
+    <ul>
+        <li>err 是否有错误发生， 0 是正常， 1 是异常</li>
+        <li>data 服务端传回数据，将做为参数传给 ok 和 fail 两个函数</li>
+        <li>需注意单，双引号</li>
+    </ul>
+    </section>
+
+    <section>
+        <h2>HN.ajax.xPost 调用示例</h2>
+    </section>
+    
+    <section>
+        <p>注意：页面不能设定 document.domain</p>
+    </section>
+    
+    <section>
+<pre>
+    var 
+    data = {data: 'this is from html'},
+    url = 'http://test.hunantv.com/test-xpost.php';
+
+    HN.ajax.xPost(url, data, function($data) {
+        HN.debug($data); 
+    });
+</pre>
+    </section>
+
+    <section>
+        <h2>服务端返回格式</h2>
+    </section>
+
+    <section>
+<pre>
+    window.name = "{err: 0/1, data: data from server-side}";
+</pre> 
+        <ul class="min-li">
+            <li> 服务端需输出一段脚本把数据赋给 window.name</li>
+            <li> 需注意单，双引号</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>HN.cookie</h2>
+    </section>
+
+    <section>
+        <ul class="min-li">
+            <li>HN.cookie.get($name) <span>获得$name对应的cookie</span></li>
+            <li>HN.cookie.set($name, $value, $expires, $domain, $path, $secure) <span>设定cookie</span></li>
+            <li>HN.cookie.remove($name, $domain, $path, $secure) <span>删除cookie</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>弹出层 HN.dialog</h2>
+    </section>
+
+    <section>
+<pre>
+    HN.dialog.open({
+        'title': '这里是标头位置内容',    
+        'body': '这里是弹出层内容',
+        'foot': '这里是底部位置'    
+    });
+</pre>
+    </section>
+    
+    <section>
+    <ul class="min-li">
+        <li>title   顶部位置，直接传入HTML</li>
+        <li>body    内容位置，直接传入HTML</li>
+        <li>foot    底部位置，直接传入HTML</li>
+        <li>width   自定义宽度，默认300px，传入数值</li>
+        <li>bgFrame 是否显示遮罩背景，默认为true，布尔值</li>
+        <li>opacity 遮罩背景透明度，默认为0.5，可传入 0~1 之间数值</li>
+        <li>disableBgClick 是否屏蔽遮罩背景层的点击关闭事件，默认为false  </li>
+        <li>closeClassName 设定触发关闭事件的class名，默认为 'hn-dialog-close'</li>
+        <li>cssFile 需要引入的css文件，默认为 dialog.css</li>
+    </ul>
+    </section>
+
+    <section>
+        <h2>HN.dialog.close()</h2>
+    </section>
+
+    <section>
+        <p>调用此方法关闭层，HTML不会移除，可调HN.dialog.open()(不带参数)再次打开</p>
+    </section>
+
+    <section><h2>HN.dialog.destroy()</h2></section>
+
+    <section>
+    <ul>
+        <li>直接调用，无参数</li>
+        <li>移除层相关HTML</li>
+        <li>destroy后不能直接用HN.dialog.open()(不带参数)打开</li>
+    </ul>
+    </section>
+
+    <section><h2>HN.dialog.alert($msg, $time)</h2></section>
+
+    <section>
+    <ul>
+        <li>简单提示消息</li>
+        <li>$msg : 消息内容 </li>
+        <li>$times : 层显示时间。可选，如不设定，层将不隐藏</li>
+    </ul>
+    </section>
+
+    <section>
+        <h2>HN.slide 滚动效果</h2>
+    </section>
+
+    <section>
+        <h2>HTML 格式</h2>
+        <p><img src="http://min.us/i3n9e.jpg" /></p>
+    </section>
+
+    <section>
+<pre>
+    //javascript 简单 
+    HN.go('jquery, slide', function() {
+        var slide = new HN.slide('hn-slide');
+        //hn-slide 为slide最外层ID
+        //class名必需
+    });
+</pre>
+    </section>
+
+    <section>
+<pre>
+    //javascript 传递参数
+    HN.go('jquery, slide', function() {
+        var slide = new HN.slide({
+                slideId: 'hn-slide',
+                itemNode: 'div',
+                times: 500
+            });
+        //hn-slide 为slide最外层ID
+        //class名必需
+    });
+</pre>
+    </section>
+    
+    <section>
+        <ul class="min-li">
+            <li>autoPlay*    是否自动播放，布尔值（*还需要fixed一些BUG*）</li>
+            <li>slideId*     要初始化为一个slider的ID</li>
+            <li>itemNode*    滚动的个体nodeName，如‘div’，‘li’...</li>
+            <li>repeat*      是否重复播放，布尔值，默认true</li>
+            <li>direction*   滚动方向，‘*X*’ 为X轴向，‘*Y*’ 为Y轴向，默认X轴</li>
+            <li>times*       滚动动画时间，传数值。默认为500</li>
+            <li>scrollItems* 滚动个体数，默认为1个</li>
+        </ul>
+    </section>
+    
+    <section>
+<pre>
+    //外部方法调用方法
+    HN.go('jquery, slide', function() {
+        var slide = new HN.slide('hn-slide');
+        //调用滚到下一张的外部方法
+        slide.next();
+    });
+</pre>
+    </section>
+
+    <section>
+    <ul>
+        <li>next()*       下一位置</li>
+        <li>prev()*       上一位置</li>
+        <li>goTo($pos)*   滚动到指定位置</li>
+    </ul>
+    </section>
+
+    <section>
+        <h2>同一页面有多个slider？</h2>
+        <p>定义不同的外层id，并初始化就好了。。。</p>
+    </section>
+
+    <section><h2>HN.tmpl (模板引擎)</h2></section>
+    
+    <section>
+    <img src='http://min.us/i78fw.jpg' /> 
+    </section>
+
+    <section>
+    <img src="http://min.us/i7kDW.jpg" />
+<pre>
+    //获取组合数据后的HTML后可放入需要显示的位置
+    var data = HN.tmpl('template', {name: [1, 2, 3, 4]});
+</pre>
+    </section>
+
+    <section>
+    <ul class="min-li">
+        <li>短模板直接定义成字符串</li>
+        <li>长模板写进 < script id="" type="html/hn-tmpl" > 中</li>
+    </ul>
+    </section>
+
+    <section>
+    可直接写函数在 [% %] 中，如：<br />
+    <img src="http://min.us/i7oUm.jpg" />
+    </section>
+
+    <section>
+    <h2>HN.notice 提醒</h2>
+    </section>
+
+    <section>
+    <h2>显示在title上</h2>
+    <ul>
+        <li>HN.notice.titleMsg($msg)* $msg显示的消息</li>
+        <li>stop()* 停止闪烁</li>
+    </ul>
+    </section>
+
+    <section>
+    <p>组件还在增加中...</p>
+    </section>
+
+    <section>
+    <h1>书写规范</h1>
+    </section>
+
+    <section>
+    <h2>变量、函数及命名</h2>
+    <ul>
+        <li>声明变量必须加上 var 关键字</li>
+        <li>test, testTest, testTestTest (命名形式)</li>
+        <li>函数参数，加前缀 $</li>
+    </ul> 
+    </section>
+
+    <section>
+<pre>
+    //变量定义到顶部，且定义多个变量只用一个 var
+    var
+    hn = 1,
+    hnTest = 2;
+
+    function makeHnHappy( $a, $b ) {
+        
+        /* 
+            some code
+        */
+
+    }
+
+    makeHnHappy( hn, hnTest );
+</pre> 
+    </section>
+
+    <section>
+        <p>养成好习惯，应该加分号的地方请一定加上</p>
+    </section>
+
+    <section>
+        <h2>我们约定的风格</h2> 
+    </section>
+
+    <section>
+<pre>
+    // 定义一个函数
+    function iAmFunction() { 
+        // 定义函数括号后请空格，大括号与function在一行
+        
+        // 顶部定义变量  一个tab，四个空格
+        var     // 只要一个var
+        a = 1,  // 用逗号
+        b = 2,  // 一个语句一行
+        c = {   // “ = ” 两端用空格
+            
+            x: 1, // 对象一个属性一行，“ : ”号后要有空格
+            y: 2
+
+        },
+        d = [1, 2, 3, 4, 5]; //定义数组，“ , ”后要有空格
+
+    } //这里与function要对齐
+</pre>
+    </section>
+
+    <section>
+    <h2>ID 及 Class 命名</h2>
+    <ul>
+        <li>全部小写</li>
+        <li>以 “ - ” 符号连接</li>
+    </ul>
+    </section>
+
+    <section>
+    <p>如：hn-dialog, hn-comment-box</p>
+    </section>
+
+    <section>
+        <p>the end :)</p>
+      </section>
+
+
+    <script>
+
+      /*
+      ************************************
+      *                                  *
+      *            JAVASCRIPT            *
+      *  (You don't have to read this)   *
+      ************************************
+      */
+
+      function init() {
+        var firstFrame = window.location.hash? parseInt(window.location.hash.split("#")[1], 10) : 1;
+        var title = document.querySelector("title").textContent;
+        var slides = document.querySelectorAll("body > section");
+        for (var i = 1, il = slides.length; i <= il; i++) {
+          // FIXME : Mandatory for flex box model for vertical align
+          // Firefox bug :(
+          slides[i - 1].innerHTML = "<div>" + slides[i - 1].innerHTML + "</div>";
+          window.history[(i == 1? 'replace' : 'push') + 'State'](i, title + " ("+ i +"/"+ il +")", "#"+i);
+        }
+
+        var footer = document.createElement("footer");
+        footer.id = "footer";
+        footer.innerHTML = 
+          '<div class="flex-wrapper"><p>' + title + '</p>' +
+          '<p class="flex-space"></p>' + 
+          '<p id="index"><span class="pagenumber"></span> / ' + il +'</p>';
+        document.body.appendChild(footer);
+        history.go(- slides.length + firstFrame);
+
+
+        window.addEventListener("popstate", function(e) {
+          if(e.state) {
+            var old = document.querySelector("section[aria-selected]");
+            var next = document.querySelector("section:nth-of-type("+ e.state +")");
+
+            if (old) {
+              old.removeAttribute("aria-selected");
+              if (old.hasAttribute("data-onunload")) {
+                window[old.getAttribute("data-onunload")].call(window, old);
+              }
+            }
+
+            if (next) {
+              next.setAttribute("aria-selected", "true");
+              if (next.hasAttribute("data-onload")) {
+                window[next.getAttribute("data-onload")].call(window, next);
+              }
+            }
+
+
+            var index = document.querySelector("#index .pagenumber");
+            index.innerHTML = e.state;
+          }
+        }, true); 
+      }
+
+      function resize() {
+        var style = document.getElementById("resizeStyle");
+        if (!style) {
+          style = document.createElement("style");
+          style.id = "resizeStyle";
+          document.head.appendChild(style);
+        }
+        style.textContent = "body>section>div {height: "+ window.innerHeight +"px}";
+      }
+
+      window.addEventListener("resize", resize, true);
+      window.addEventListener("load", resize, true);
+      window.addEventListener("load", init, true);
+
+      // Webkit bug
+      // window.addEventListener("hashchange", init, true); // FIXME Webkit fires hashchange when it shouldn't
+      window.addEventListener("keydown", function(e) {
+        // Don't intercept keyboard shortcuts
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+          return;
+        }
+        if (   e.keyCode == 80 // p
+            || e.keyCode == 66 // b
+            || e.keyCode == 37 // left arrow
+            || e.keyCode == 33 // page up
+        ) {
+          e.preventDefault();
+          history.back();
+        }
+        if (   e.keyCode == 78 // n
+            || e.keyCode == 32 // space
+            || e.keyCode == 39 // right arrow
+            || e.keyCode == 34 // page down
+        ) {
+          e.preventDefault();
+          history.forward();
+        }
+      }, true);
+    </script>
+  </body>
+</html>
