@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Some Tips About The \"Select\" Element
+title: Some Tips About The Select Element
 ---
 
 *select* 是一个很特别的标签，特别是在IE下，表现往往让人吃惊和郁闷，稍稍总结一下。
@@ -22,9 +22,7 @@ h3. 一个特别的对象集合 *options[]* ，比如：
 只需：
 
 {% highlight javascript linenos %}
-    
     document.getElementById('s').options
-
 {% endhighlight %}
 
 就可以得到一个 *option* 的数组对象，非常的方便。
@@ -35,15 +33,12 @@ h3. 两个特别的方法 *add()*， *remove()*
 按习惯来说，用脚本添加一段 *option* 到一个 *select* 标签中，可以用 *innerHTML* 来操作。如：
 
 {% highlight javascript linenos %}
-    
     document.getElementById('s').innerHTML = '<option value="4">4</option>';
-
 {% endhighlight %}
 
 上面的代码在firefox下是没问题的，但是在IE下是不能达到想要的结果。标准的方法应该是用 *add()* 方法来进行：
 
 {% highlight javascript linenos %}
-    
     var 
     s = document.getElementById('s'),
     o = document.createElement('option');
@@ -55,7 +50,6 @@ h3. 两个特别的方法 *add()*， *remove()*
     } catch(ex) {
         s.add(o); // IE only
     }
-
 {% endhighlight %}
 
 h4. 两个参数
@@ -69,9 +63,7 @@ h4. 两个参数
 一个一个的 remove？显然不是。非常的神奇，只要把 select 的 *length* 设为 0 就行了。如：
 
 {% highlight javascript linenos %}
-
     document.getElementById('s').length = 0;
-
 {% endhighlight %}
 
 
