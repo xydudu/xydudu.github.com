@@ -1,0 +1,86 @@
+---
+layout: default
+title: Some Tips About The "Select" Element
+---
+
+*select* 是一个很特别的标签，特别是在IE下，表现往往让人吃惊和郁闷，稍稍总结一下。
+
+查看 w3school 的说明： "http://www.w3school.com.cn/htmldom/dom_obj_select.asp":http://www.w3school.com.cn/htmldom/dom_obj_select.asp
+
+h3. 一个特别的对象集合 *options[]* ，比如：
+
+{% highlight html linenos %}
+
+<select id="s">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+
+{% endhighlight %}
+
+只需：
+
+{% highlight javascript linenos %}
+    
+    document.getElementById('s').options
+
+{% endhighlight %}
+
+就可以得到一个 *option* 的数组对象，非常的方便。
+
+
+h3. 两个特别的方法 *add()*， *remove()*
+
+按习惯来说，用脚本添加一段 *option* 到一个 *select* 标签中，可以用 *innerHTML* 来操作。如：
+
+{% highlight javascript linenos %}
+    
+    document.getElementById('s').innerHTML = '<option value="4">4</option>';
+
+{% endhighlight %}
+
+上面的代码在firefox下是没问题的，但是在IE下是不能达到想要的结果。标准的方法应该是用 *add()* 方法来进行：
+
+{% highlight javascript linenos %}
+    
+    var 
+    s = document.getElementById('s'),
+    o = document.createElement('option');
+    o.text = '4';
+    o.value = '4';
+    
+    try {
+        s.add(o,null); // standards compliant
+    } catch(ex) {
+        s.add(o); // IE only
+    }
+
+{% endhighlight %}
+
+h4. 两个参数
+* option	必需。要添加选项元素。必需是 option 或 optgroup 元素。
+* before	必需。在选项数组的该元素之前增加新的元素。如果该参数是null，元素添加到选项数组的末尾。
+
+第二个参数在IE下是不需要的，但是在其它浏览器下又必需。
+
+有了添加，必然会有删除，相应的方法便是 *remove()*，调用起来也是相当的简单，这里就不说明了，特别要讲的一个是 *如何清空一个select* ？
+
+一个一个的 remove？显然不是。非常的神奇，只要把 select 的 *length* 设为 0 就行了。如：
+
+{% highlight javascript linenos %}
+
+    document.getElementById('s').length = 0;
+
+{% endhighlight %}
+
+
+
+
+
+
+
+
+
+
+
