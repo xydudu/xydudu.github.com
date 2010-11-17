@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Some Tips About The "Select" Element
+title: Some Tips About The \"Select\" Element
 ---
 
 *select* 是一个很特别的标签，特别是在IE下，表现往往让人吃惊和郁闷，稍稍总结一下。
