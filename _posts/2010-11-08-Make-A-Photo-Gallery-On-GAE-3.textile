@@ -51,5 +51,5 @@ class Image(webapp.RequestHandler):
 
 更新一下 Image 方法，看看是不是有效果呢？
 
-基本上写到这里，已给可以给堂客交差了，完成品在这: "dudu's photo wall": http://photo.danielly.me
+基本上写到这里，已给可以给堂客交差了，完成品在这: "danielly":http://photo.danielly.me
 
