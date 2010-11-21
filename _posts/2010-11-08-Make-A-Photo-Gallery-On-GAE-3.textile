@@ -1,0 +1,55 @@
+---
+layout: default
+title: Make A Photo Gallery On GAE (3) --- Cache The Page 
+---
+
+h3. 利用 Memcache 缓存数据
+
+把不变的数据缓存起来，对加快页面的打开速度，减小数据库压力绝对是一个好办法。这里做相册，最直接的就是把图片缓存起来啦，而GAE的memcache API也是非常的简单，添加一个函数：
+
+{% highlight python linenos %}
+   
+def getPhoto(pid):
+    p = memcache.get(pid)
+    if p is not None:
+        return p
+    else:
+        p = db.get(pid)
+        memcache.add(pid, p, 3600 * 24)
+        return p 
+    
+{% endhighlight %}
+
+把原来程序中 *db.get(key)* 替换为 *getPhoto(key)* 即可。
+
+h3. 设定 ETag
+
+关于ETag的东西可参考： "Best Practices for Speeding Up Your Web Site":http://developer.yahoo.com/performance/rules.html#etags
+简单的一个原理就是在第一次访问图片的时候，设定一个唯一的字符串到 ETag，然后我们就可以通过获取 header 中的 If-None-Match 来判定是否已经访问过该图片，如果已访问过，则直接返回 304。
+
+{% highlight python linenos %}
+
+class Image(webapp.RequestHandler):
+    def get(self, size, pid):
+        p = getPhoto(pid)
+
+        dic = self.request.headers
+        key = dic.get("If-None-Match")
+        self.response.headers['ETag'] = pid
+        logging.debug(key)
+        
+        if key and key == pid:
+            self.error(304)
+        else: 
+            if p.photo:
+                self.response.headers['Content-Type'] = "image/png"
+                self.response.out.write(p.getBig() if size == 'l' else p.getSmall(72))
+            else:
+                self.error(404)
+
+{% endhighlight %}
+
+更新一下 Image 方法，看看是不是有效果呢？
+
+基本上写到这里，已给可以给堂客交差了，完成品在这: "dudu's photo wall": http://photo.danielly.me
+
