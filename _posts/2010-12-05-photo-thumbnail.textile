@@ -97,7 +97,7 @@ print response['photos'][0]['tags'][0]['center']
 
 !http://blog.xydudu.com/css/images/facedetection.png!
 
-处理地址："http://photo.danielly.me/facedetection":http://photo.danielly.me/facedetection
+"围观地址":http://photo.danielly.me/facedetection
         
 正合我的要求，上面的算法很简陋，有很多可优化之处，但是时间不早了，我得睡了。
 
