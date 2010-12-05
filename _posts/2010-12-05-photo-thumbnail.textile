@@ -5,7 +5,7 @@ title: 从相册上传生成缩略图来谈face detection的应用
 
 整理照片，在上传下面这张照片后，发现其生成的缩略图很是悲剧。
 
-!http://xydudu-photo.appspot.com/photo/l/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM (photo)!
+!http://xydudu-photo.appspot.com/photo/l/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM!
 
 下面是其生成的缩略图
 
@@ -21,5 +21,8 @@ title: 从相册上传生成缩略图来谈face detection的应用
 
 flickr
 !http://blog.xydudu.com/css/images/flickr.jpg (flickr)!
+
+可见基本上生成缩略图都有这个问题，把我帅气的头切掉了一半。
+
 
 
