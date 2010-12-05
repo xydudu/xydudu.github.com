@@ -27,5 +27,84 @@ flickr
 
 于是我想，能不能改一下生成缩略图的算法，包含一个人的照片生成的缩略图能保证头部完整的显示。即然要保证头部的完整显示，首要任务就是得把头部识别出来，并确定头部在图片的位置，再以此区域为中心来生成缩略图。
 
-说起来简单，最大的难题便是如何识别出头部来，善于利用google，出来了一大堆的相关文章，找到一个稍简单的实现，开始接下来的步骤。
+说起来简单，最大的难题便是如何识别出头部来，善于利用google，出来了一大堆的相关文章，但这篇文章就不讲述具体如何用代码来实现脸部识别，我是懒人，有现成的，何必再自己折腾呢？翻出来 "face.com":http://www.face.com 。利用它提供的API搞定脸部识别这一步。代码及结果如下：
+
+{% highlight python linenos %}
+ 
+from face_client import face_client
+
+client = face_client.FaceClient('api key', 'api secret')
+
+response = client.faces_detect('http://xydudu-photo.appspot.com/photo/l/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM')
+	
+print response['photos'][0]['tags'][0]['center']
+    
+{% endhighlight %}
+
+运行上面代码，得到脸部中心坐标：{'y': 16.81, 'x': 86.73}
+
+下面就是生成一张包括整个头部的缩略图了，算法步骤：
+    * 确定原图中心点
+    * 等比缩小图片至小边边长与缩略图边长相同
+    * 确定等比缩小后的中心点
+    * 基于中心点剪切较长边到缩略边指定长度
+
+前两步都较容易实现，下面说下后两步的代码实现。
+
+确定等比缩小后的中心点代码：
+
+{% highlight python linenos %}
+
+    img = images.Image(self.photo)
+    w, h = (img.width, img.height)
+    
+    # 原图脸的中心点
+    cx, cy = (center.x, center.y)
+    
+    a = w/size if h>w else h/size
+    new_w, new_h = (w/a, h/a)
+
+    # 按比例缩小后的中心点
+    ncx, ncy = (cx/a, cy/a)
+
+{% endhighlight %}
+
+基于中心点剪切较长边：
+
+{% highlight python linenos %}
+    left_x = 0.0
+        top_y = 0.0
+        right_x = 1.0
+        bottom_y = 1.0
+
+        if h>w:
+            if ncy<(size/2):
+                top_y = float(new_h-size)/new_h
+            else:
+                bottom_y = float(size)/new_h
+        
+        else:
+            if ncx<(size/2):
+                left_x = float(new_w-size)/new_w
+            else:
+                right_x = float(size)/new_w
+        
+
+    img.crop(left_x/new_w, top_y/new_h, right_x/new_w, bottom_y/new_h)
+{% endhighlight %}
+
+最终结果出来如下：
+
+!http://blog.xydudu.com/css/images/facedetection.png!
+
+处理地址："http://photo.danielly.me/facedetection":http://photo.danielly.me/facedetection
+        
+正合我的要求，上面的算法很简陋，有很多可优化之处，但是时间不早了，我得睡了。
+
+关于 face detecation ，感兴趣时再研究吧。
+
+
+
+
+
 
