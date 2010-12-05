@@ -11,7 +11,7 @@ title: 从相册上传生成缩略图来谈face detection的应用
 
 !http://xydudu-photo.appspot.com/photo/s/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM (photo)!
 
-可以看到缩略图直接把头切掉了一半，"this photo":http://photo.danielly.me 程序是我自己写的，"生成缩略图的算法":http://blog.xydudu.com/2010/10/29/Make-A-Photo-Gallery-On-GAE-2.html 也是自己琢磨的。于是我在豆瓣，人人网和flickr都用这张照片实验了一下，结果如下：
+可以看到缩略图直接把头切掉了一半，"此相册":http://photo.danielly.me 程序是我自己写的，"生成缩略图的算法":http://blog.xydudu.com/2010/10/29/Make-A-Photo-Gallery-On-GAE-2.html 也是自己琢磨的。于是我在豆瓣，人人网和flickr都用这张照片实验了一下，结果如下：
 
 豆瓣
 !http://blog.xydudu.com/css/images/douban.jpg (douban)!
@@ -24,7 +24,7 @@ flickr
 
 可见基本上生成缩略图都有这个问题，把我帅气的头切掉了一半。
 
-于是我想，能不能改一下生成缩略图的算法，包含一个人的照片生成的缩略图能保证头部完整的显示。
+于是我想，能不能改一下生成缩略图的算法，包含一个人的照片生成的缩略图能保证头部完整的显示。即然要保证头部的完整显示，首要任务就是得把头部识别出来，并确定头部在图片的位置，再以此区域为中心来生成缩略图。
 
-
+说起来简单，最大的难题便是如何识别出头部来，善于利用google，出来了一大堆的相关文章，找到一个稍简单的实现，开始接下来的步骤。
 
