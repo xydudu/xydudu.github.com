@@ -5,11 +5,11 @@ title: 从相册上传生成缩略图来谈face detection的应用
 
 整理照片，在上传下面这张照片后，发现其生成的缩略图很是悲剧。
 
-!http://xydudu-photo.appspot.com/photo/l/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM!
+!http://photo.danielly.me/photo/l/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM!
 
 下面是其生成的缩略图
 
-!http://xydudu-photo.appspot.com/photo/s/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM!
+!http://photo.danielly.me/photo/s/agx4eWR1ZHUtcGhvdG9yDgsSBlBob3RvcxjJ3AMM!
 
 可以看到缩略图直接把头切掉了一半，http://photo.danielly.me 程序是我自己写的。 
 "生成缩略图的算法":http://blog.xydudu.com/2010/10/29/Make-A-Photo-Gallery-On-GAE-2.html 也是自己琢磨的。于是我在豆瓣，人人网和flickr都用这张照片实验了一下，结果如下：
