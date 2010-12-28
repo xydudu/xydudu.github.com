@@ -3,7 +3,7 @@
 (function($doc, undefined) {
 
     var 
-    url = 'http://lab.local/grace/',
+    url = 'http://blog.xydudu.com/lab/grace/',
     box = div('grace-trigger', {
         position: 'fixed',
         right: '10px',
