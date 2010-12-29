@@ -1,6 +1,8 @@
 //main file
 //12.27/2010
 (function($doc, undefined) {
+    
+    if (window.location.hash == '#graceadmin') return;
 
     var 
     url = 'http://blog.xydudu.com/lab/grace/',
@@ -8,7 +10,79 @@
         position: 'fixed',
         right: '10px',
         top: '45%'
-    });
+    }),
+    agent = function() {
+        var ua = navigator.userAgent,
+        m,
+        o = {
+            webkit: 0,
+            chrome: 0,
+            safari: 0,
+            gecko: 0,
+            firefox:  0,
+            ie: 0,
+            opera: 0
+        },
+        numberify = function(s) {
+            var c = 0;
+            // convert '1.2.3.4' to 1.234
+            return parseFloat(s.replace(/\./g, function() {
+                return (c++ === 0) ? '.' : '';
+            }));
+        };
+
+        // WebKit
+        if ((m = ua.match(/AppleWebKit\/([\d.]*)/)) && m[1]) {
+            //o.webkit = numberify(m[1]);
+
+            // Chrome
+            if ((m = ua.match(/Chrome\/([\d.]*)/)) && m[1]) {
+                o.chrome = numberify(m[1]);
+            }
+            // Safari
+            else if ((m = ua.match(/\/([\d.]*) Safari/)) && m[1]) {
+                o.safari = numberify(m[1]);
+            }
+            
+        }
+        // NOT WebKit
+        else {
+            // Opera
+            if ((m = ua.match(/Opera\/.* Version\/([\d.]*)/)) && m[1]) {
+                o.opera = numberify(m[1]);
+
+            // NOT WebKit or Opera
+            } else {
+                // MSIE
+                if ((m = ua.match(/MSIE\s([^;]*)/)) && m[1]) {
+                    o.ie = numberify(m[1]);
+                // NOT WebKit, Opera or IE
+                } else {
+                    // Gecko
+                    if ((m = ua.match(/Gecko/))) {
+                        // Firefox
+                        if ((m = ua.match(/Firefox\/([\d.]*)/)) && m[1]) {
+                            o.firefox = numberify(m[1]);
+                        }
+                    }
+                }
+            }
+        }
+        for (var k in o) if(o[k]) return k +':'+ o[k];
+    }(),
+    windowWH = function() {
+        var myWidth = 0, myHeight = 0;
+        if( typeof( window.innerWidth ) == 'number' ) {
+            //Non-IE
+            myWidth = window.innerWidth;
+            myHeight = window.innerHeight;
+        } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+            //IE 6+ in 'standards compliant mode'
+            myWidth = document.documentElement.clientWidth;
+            myHeight = document.documentElement.clientHeight;
+        }
+        return [myWidth, myHeight];
+    }();
     
     box.innerHTML  = '<a href="javascript:"><img border="0" src="'+ url +'search.png" alt="find the bug"  title="find the bug"/></a>';
     box.onclick = function($e) {
@@ -118,11 +192,15 @@
             backgroundColor: 'gray',
             zIndex: 901
         });
+        //console.log(agent);
 
         input.innerHTML = 
-                    '<form id="grace-form" method="post" target="grace-iframe" action="http://test.990731.com/?a=report" >' +
+                    '<form id="grace-form" method="post" target="grace-iframe" action="http://test.990731.com/?c=bug&a=report" >' +
                     '<textarea style="width:'+ (+w-6) +'px" name="description">description</textarea><br />' +
                     '<input type="hidden" value="'+ [x0, y0, x1, y1].join(',') +'" name="coordinate" />' +
+                    '<input type="hidden" value="'+ agent +'" name="agent" />' +
+                    '<input type="hidden" value="'+ windowWH.join(',') +'" name="screen" />' +
+                    '<input type="hidden" value="'+ window.location +'" name="url" />' +
                     '<input type="image" src="'+ url +'y.png" alt="ok" />' +
                     '<input type="image" src="'+ url +'x.png" alt="cancel" />' +
                     '</form>';
