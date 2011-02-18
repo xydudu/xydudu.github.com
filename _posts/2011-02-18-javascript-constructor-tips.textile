@@ -1,0 +1,47 @@
+---
+layout: default
+title: Javascript Constructor Tips
+---
+
+No words, just code.
+
+{% highlight javascript linenos %}
+    var a = function() {
+        
+        console.log(1);    
+
+    };
+
+    a.prototype.b = function() {
+        
+        console.log(2);
+
+    };
+
+    a.c = function() {
+        
+        console.log(3);
+
+    };
+
+    a.b(); // a.b is not a function
+    
+    a.c(); // 3
+
+    //////
+
+    var d = a(); // 1
+
+    d.b();  // d is undefined
+
+    d.c();  // d is undefined
+    
+
+    //////
+    
+    var e = new a(); //1
+    
+    e.b(); // 2
+
+    e.c(); // e.c is not a function
+{% endhighlight %}
