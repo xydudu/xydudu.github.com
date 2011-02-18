@@ -46,4 +46,56 @@ No words, just code.
     e.c(); // e.c is not a function
 {% endhighlight %}
 
+{% highlight javascript linenos %}
+    var a = function() {
+        
+        console.log(1);    
+        return {
+            d: function() {
+                console.log(4);    
+            }   
+        };
+
+    };
+
+    a.prototype.b = function() {
+        
+        console.log(2);
+
+    };
+
+    a.c = function() {
+        
+        console.log(3);
+
+    };
+
+    a.b(); // a.b is not a function
+    
+    a.c(); // 3
+
+    a.d(); // a.d is not a function
+
+    ////////
+
+    var e = a(); // 1
+
+    e.b(); // e.b is not a function
+
+    e.c(); // e.c is not a function
+
+    e.d(); // 4
+    
+    ////////
+
+    var f = new a(); // 1
+
+    f.b(); // f.b is not a function
+
+    f.c(); // f.c is not a function
+
+    f.d(); // 4
+
+{% endhighlight %}
+
 
