@@ -98,6 +98,29 @@ head.js('a.php', function() {
 用head.ready来解决问题的timeline
 !http://blog.xydudu.com/css/images/load-test-4.jpg!
 
+拜读大牛 *Nicholas C. Zakas* 的文章 "Separating JavaScript download and execution":http://www.nczonline.net/blog/2011/02/14/separating-javascript-download-and-execution/
+
+如果能把JS的下载和执行分开，就能比较完美的解决上述问题了。在我理想中的代码应该是：
+
+{%highlight javascript linenos%}
+head.js('c.php', function() {
+    print(c); 
+});
+
+head.js('b.php', function() {
+    print(b); 
+});
+
+head.onlyload('a.php');
+
+head.ready('c', function() {
+    a.execut();
+    print(a); 
+});
+
+{%endhighlight%}
+
+有一个load的方法，只负责加载JS但不执行，而在需要的地方执行execut方法执行。
 
 
 
