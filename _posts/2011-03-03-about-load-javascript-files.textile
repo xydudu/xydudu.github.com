@@ -9,19 +9,13 @@ title: 关于js文件加载的一些小思考
 假定有三个JS文件：
 
 *a.js* : 加载要 1 秒 (要依赖c.js)
-{% highlight javascript linenos %}
 var a = c && 'a';
-{% endhighlight %}
 
 *b.js* : 加载要 2 秒
-{% highlight javascript linenos %}
 var b = 'b';
-{% endhighlight %}
 
 *c.js* : 加载要 3 秒 
-{% highlight javascript linenos %}
 var c = 'c';
-{% endhighlight %}
 
 (**为了模拟加载的时间，三个文件都用php代替**)
 
