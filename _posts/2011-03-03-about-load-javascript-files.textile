@@ -42,6 +42,7 @@ var c = 'c';
          
     </script>
 </body>
+
 {%endhighlight%}
 
 输出： a, b, c
