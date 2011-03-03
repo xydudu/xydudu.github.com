@@ -52,7 +52,7 @@ print(c);
 a, b, c三个文件还是那三个文件。只是这次用headjs来引入。
 
 {%highlight javascript linenos%}
-head.js("c.php", "b.php", "a.php", function() {
+head.js("c.js", "b.js", "a.js", function() {
 
     print(a);
     print(b);
@@ -72,15 +72,15 @@ head.js("c.php", "b.php", "a.php", function() {
 并行下载的同时强制的使三个文件按传入顺序执行，所以a中的JS能顺利的执行。如果head.js分别引入三个文件，会发什么什么情况呢？
 
 {%highlight javascript linenos%}
-head.js('c.php', function() {
+head.js('c.js', function() {
     print(c); 
 });
 
-head.js('b.php', function() {
+head.js('b.js', function() {
     print(b); 
 });
 
-head.js('a.php', function() {
+head.js('a.js', function() {
     print(a); 
 });
 
@@ -103,15 +103,15 @@ head.js('a.php', function() {
 如果能把JS的下载和执行分开，就能比较完美的解决上述问题了。在我理想中的代码应该是：
 
 {%highlight javascript linenos%}
-head.js('c.php', function() {
+head.js('c.js', function() {
     print(c); 
 });
 
-head.js('b.php', function() {
+head.js('b.js', function() {
     print(b); 
 });
 
-head.onlyload('a.php');
+head.onlyload('a.js');
 
 head.ready('c', function() {
     a.execut();
