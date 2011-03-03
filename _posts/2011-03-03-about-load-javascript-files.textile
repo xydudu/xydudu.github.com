@@ -20,14 +20,9 @@ var c = 'c';
 (**为了模拟加载的时间，三个文件都用php代替**)
 
 传统的方法，按c,b,a顺序依次加载。
-{%highlight html linenos%}
-<head>
-    <title>load test 1</title>
     <script src="c.js"></script>
     <script src="b.js"></script>
     <script src="a.js"></script>
-</head>
-{%endhighlight%}
 
 {%highlight js linenos%}
 function print() {
