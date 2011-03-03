@@ -51,7 +51,7 @@ print(c);
 
 a, b, c三个文件还是那三个文件。只是这次用headjs来引入。
 {%highlight javascript linenos%}
-honey.js('c.php', 'b.php', 'a.php', function() {
+honey.js("c.php", "b.php", "a.php", function() {
     print(a);
     print(b);
     print(c);
