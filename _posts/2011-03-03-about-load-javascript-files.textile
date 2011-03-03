@@ -20,11 +20,14 @@ var c = 'c';
 (**为了模拟加载的时间，三个文件都用php代替**)
 
 传统的方法，按c,b,a顺序依次加载。
+
+{%highlight HTML linenos%}
     <script src="c.js"></script>
     <script src="b.js"></script>
     <script src="a.js"></script>
+{%endhighlight%}
 
-{%highlight js linenos%}
+{%highlight javaScript linenos%}
 function print() {
     var info = document.getElementById("info");
     info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
