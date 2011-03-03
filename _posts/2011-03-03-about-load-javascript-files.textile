@@ -10,54 +10,55 @@ title: 关于js文件加载的一些小思考
 
 *a.js* : 加载要 1 秒 (要依赖c.js)
 {% highlight javascript linenos %}
-    var a = c && 'a';
+var a = c && 'a';
 {% endhighlight %}
 
 *b.js* : 加载要 2 秒
 {% highlight javascript linenos %}
-    var b = 'b';
+var b = 'b';
 {% endhighlight %}
 
 *c.js* : 加载要 3 秒 
 {% highlight javascript linenos %}
-    var c = 'c';
+var c = 'c';
 {% endhighlight %}
 
 (**为了模拟加载的时间，三个文件都用php代替**)
 
 传统的方法，按c,b,a顺序依次加载。
 {% highlight html linenos %}
-    <!doctype html>
-    <html>
-    <head>
-        <title>load test 1</title>
-        <script src="c.js"></script>
-        <script src="b.js"></script>
-        <script src="a.js"></script>
-    </head>
-    <body>
-        <div id="info"></div>
-        <script>
+<!doctype html>
+<html>
+<head>
+    <title>load test 1</title>
+    <script src="c.js"></script>
+    <script src="b.js"></script>
+    <script src="a.js"></script>
+</head>
+<body>
+    <div id="info"></div>
+    <script>
 
-            function print() {
-                var info = document.getElementById("info");
-                info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
-            }
+        function print() {
+            var info = document.getElementById("info");
+            info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
+        }
 
-            print(a);
-            print(b);
-            print(c);
-             
-        </script>
-    </body>
-    </html>
+        print(a);
+        print(b);
+        print(c);
+         
+    </script>
+</body>
+</html>
 {% endhighlight %}
 
 输出： a, b, c
 
 其在IE6下的timeline：!http://blog.xydudu.com/css/images/load-1.jpg!
 
-可以看到，三个js文件依次单独加载，是串行的，整个时间花了差不多6秒。
+可以看到，三个js文件依次单独加载，是串行的，整个时间花了差不多6秒。显然，这样是很让恼火的表现，如果三个文件能同时下载的
+话，理论上只要3秒就能把三个文件下载完成了，这将节约一半的时间。
 
 
     
