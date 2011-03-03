@@ -21,13 +21,13 @@ var c = 'c';
 
 传统的方法，按c,b,a顺序依次加载。
 
-{%highlight HTML linenos%}
-    <script src="c.js"></script>
-    <script src="b.js"></script>
-    <script src="a.js"></script>
+{%highlight html linenos%}
+<script src="c.js"></script>
+<script src="b.js"></script>
+<script src="a.js"></script>
 {%endhighlight%}
 
-{%highlight javaScript linenos%}
+{%highlight javascript linenos%}
 function print() {
     var info = document.getElementById("info");
     info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
