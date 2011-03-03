@@ -50,14 +50,17 @@ print(c);
 并行下载JS文件的loader现在已有很多表现很好的作品出现了，这里我用 "headjs":http://headjs.com 来演示JS并行下载的demo。
 
 a, b, c三个文件还是那三个文件。只是这次用headjs来引入。
+
 {%highlight javascript linenos%}
 head.js("c.php", "b.php", "a.php", function() {
+
     print(a);
     print(b);
     print(c);
-});
 
+});
 {%endhighlight%}
+
 
 
 还是正常输出： a, b, c
