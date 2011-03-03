@@ -49,5 +49,23 @@ print(c);
 
 并行下载JS文件的loader现在已有很多表现很好的作品出现了，这里我用 "headjs":http://headjs.com 来演示JS并行下载的demo。
 
+a, b, c三个文件还是那三个文件。只是这次用headjs来引入。
+{%highlight javascript linenos%}
+honey.js('c.php', 'b.php', 'a.php', function() {
+    print(a);
+    print(b);
+    print(c);
+});
+{%endhighlight%}
+
+还是正常输出： a, b, c
+
+再来查看IE6下的timeline：
+!http://blog.xydudu.com/css/images/load-test-2.jpg!
+
+三个文件并行下载，总的时间减小到差不多3秒，这对页面的渲染速度提升是非常大的。
+
+
+
 
     
