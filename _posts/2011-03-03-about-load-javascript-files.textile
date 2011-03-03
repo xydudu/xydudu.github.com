@@ -41,10 +41,13 @@ print(c);
 
 输出： a, b, c
 
-其在IE6下的timeline：!http://blog.xydudu.com/css/images/load-1.jpg!
+其在IE6下的timeline：
+!http://blog.xydudu.com/css/images/load-1.jpg!
 
 可以看到，三个js文件依次单独加载，是串行的，整个时间花了差不多6秒。显然，这样是很让恼火的表现，如果三个文件能同时下载的
 话，理论上只要3秒就能把三个文件下载完成了，这将节约一半的时间。
+
+并行下载JS文件的loader现在已有很多表现很好的作品出现了，这里我用 "headjs":http://headjs.com 来演示JS并行下载的demo。
 
 
     
