@@ -27,23 +27,19 @@ var c = 'c';
     <script src="b.js"></script>
     <script src="a.js"></script>
 </head>
-<body>
-    <div id="info"></div>
-    <script>
-
-        function print() {
-            var info = document.getElementById("info");
-            info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
-        }
-
-        print(a);
-        print(b);
-        print(c);
-         
-    </script>
-</body>
-
 {%endhighlight%}
+
+{%highlight js linenos%}
+function print() {
+    var info = document.getElementById("info");
+    info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
+}
+
+print(a);
+print(b);
+print(c);
+{%endhighlight%}
+
 
 输出： a, b, c
 
