@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 合理切图的重要
+title: 合理切图的重要性
 ---
 
 最近一直在折腾前端的性能速度，前几日改一个小的弹层脚本时，发现点击到显示弹层所费时间非常的不正常，达到了 *485ms* ，认真的检查了JS，没有发
@@ -23,8 +23,28 @@ title: 合理切图的重要
 
 *f_a_2.jpg 16441字节 ----> f_a_2.min.png 1520字节*
 
+然后去掉PNG多余信息，进一步压缩，我这里用的到工具是："pngcrush":http://pmt.sourceforge.net/pngcrush/
 
+转换为对比：
+   
+f_a_0.png *272字节*    ---->  f_a_0.min.png *187字节* 
 
+f_a_1.jpg *332字节*    ---->  f_a_1.min.png *295字节* 
+                     
+f_a_2.jpg *16441字节*  ---->  f_a_2.min.png *1520字节*   
+                     
+f_a_3.png *381字节*    ---->  f_a_3.min.png *301字节*  
+                     
+f_a_4.png *42805字节*  ---->  f_a_4.min.png *382字节* 
+                     
+f_a_5.png *467字节*    ---->  f_a_5.min.png *363字节*  
+                     
+f_a_6.png *393字节*    ---->  f_a_6.min.png *310字节*  
+                     
+f_a_7.png *43724字节*  ---->  f_a_7.min.png *681字节*  
+                     
 
+从 *104815字节* 压缩到了 *4039字节* ，这个比例，实在是惊天地，借 "此文中的一句话":http://www.dbanotes.net/web/best_practices_for_speeding_up_your_web_site_image.html
+    *图片设计的同学啊，请考虑设计面向 Web 的图片，不要动不动就设计超过可接受尺寸之外大家伙，这应该是一种习惯，而不是什么高超的技能，只需要记住就成了。* 
 
 
