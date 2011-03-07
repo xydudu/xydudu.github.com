@@ -23,7 +23,7 @@ title: 合理切图的重要性
 
 *f_a_2.jpg 16441字节 ----> f_a_2.min.png 1520字节*
 
-然后去掉PNG多余信息，进一步压缩，我这里用的到工具是："pngcrush":http://pmt.sourceforge.net/pngcrush/
+然后去掉PNG多余信息，进一步压缩，我这里用的到工具是： "pngcrush":http://pmt.sourceforge.net/pngcrush 
 
 转换为对比：
    
@@ -46,5 +46,11 @@ f_a_7.png *43724字节*  ---->  f_a_7.min.png *681字节*
 
 从 *104815字节* 压缩到了 *4039字节* ，这个比例，实在是惊天地，借 "此文中的一句话":http://www.dbanotes.net/web/best_practices_for_speeding_up_your_web_site_image.html
     *图片设计的同学啊，请考虑设计面向 Web 的图片，不要动不动就设计超过可接受尺寸之外大家伙，这应该是一种习惯，而不是什么高超的技能，只需要记住就成了。* 
+
+下面两个demo，分别是原始的图片和压缩后的，体验一下，就能明白，且先不论CSS编写的合理性，单就CSS所用到的图片，这样小小的压缩，就能给用户带来很大的体验，切记切记！
+
+使用原始图片的弹层：
+
+使用压缩后图片的弹层：
 
 
