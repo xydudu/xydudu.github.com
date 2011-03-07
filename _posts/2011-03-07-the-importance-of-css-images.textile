@@ -47,10 +47,11 @@ f_a_7.png *43724字节*  ---->  f_a_7.min.png *681字节*
 从 *104815字节* 压缩到了 *4039字节* ，这个比例，实在是惊天地，借 "此文中的一句话":http://www.dbanotes.net/web/best_practices_for_speeding_up_your_web_site_image.html
     *图片设计的同学啊，请考虑设计面向 Web 的图片，不要动不动就设计超过可接受尺寸之外大家伙，这应该是一种习惯，而不是什么高超的技能，只需要记住就成了。* 
 
-下面两个demo，分别是原始的图片和压缩后的，体验一下，就能明白，且先不论CSS编写的合理性，单就CSS所用到的图片，这样小小的压缩，就能给用户带来很大的体验，切记切记！
+压缩图片只是最开始最简单的一步，在这个基础上，可做的事情还非常多，页面的速度还能更加的快。Sprite图片二次优化，图片预加载
+，这些工作都是不难的，重要的是要有这个思想，把前端页面的性能，速度当做一个网站的基本功能，这才是一个前端（包括JS和CSS）的基本素质。
 
-使用原始图片的弹层：
-
-使用压缩后图片的弹层：
-
+参考文章：
+"http://ued.taobao.com/blog/2010/12/10/jpg_png/":http://ued.taobao.com/blog/2010/12/10/jpg_png/
+"Web 前端优化最佳实践之 图象篇":http://www.dbanotes.net/web/best_practices_for_speeding_up_your_web_site_image.html
+"Image Optimization 讀書心得":http://josephj.com/entry.php?id=209
 
