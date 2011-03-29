@@ -32,6 +32,7 @@ h1 {
 }
 a {
     text-decoration:none;
+    color: #333;
 }
 a:hover {
     text-decoration:underline;
@@ -133,6 +134,24 @@ div.tab .active {
     background:url("../img/bgs.gif") repeat-x scroll 0 -272px transparent;
 }
 
+div.main .list {
+    padding: 10px;
+    font-size: 14px;
+}
+
+div.main .list ul {
+    background-color: #fff;
+    padding: 10px;
+}
+
+div.main .list li {
+    height: 30px;
+    line-height: 30px;
+}
+
+div.main .list li span { 
+    font-size: 12px;
+}
 div.left h2 {
     background:url("../img/bgs2.gif") repeat-x scroll 0 -76px #E7E7E7;
     color:#848484;
@@ -160,6 +179,9 @@ div.left li.active {
     color: #fff;
 }
 
+span.red {
+    color: red;
+}
 span.icon {
     height: 20px;
     margin: 3px 2px 0 20px;

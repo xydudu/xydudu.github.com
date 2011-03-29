@@ -134,7 +134,11 @@
 
     var draw = false,
         x = y = x0 = y0 = x1 = y1 = 0,
-        cover;
+        cover,
+        coverTop,
+        coverLeft,
+        coverRight,
+        coverBottom;
     function beginDraw($e) {
         g('grace-input') && 
             (g('grace-input').style.display = 'none');
@@ -147,20 +151,65 @@
         
         cover = div('grace-cover', {
             position: 'absolute',
-            backgroundColor: 'gray',
             left: x0 +'px',
             top: y0 +'px',
             width: '130px',
             height: '22px',
             zIndex: '901',
-            color: 'red',
-            opacity: 0.5
+            color: 'red'
+            //opacity: 0.5
+        });
+        coverTop = div('grace-cover-top', {
+            position: 'absolute',
+            backgroundColor: 'gray',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: y0 +'px',
+            zIndex: '901',
+            opacity: 0.5,
+            cursor: 'crosshair'
+        });
+        coverLeft = div('grace-cover-left', {
+            position: 'absolute',
+            backgroundColor: 'gray',
+            left: 0,
+            top: y0 +'px',
+            height: '22px',
+            width: x0 +'px',
+            zIndex: '901',
+            opacity: 0.5,
+            cursor: 'crosshair'
+        });
+        coverRight = div('grace-cover-right', {
+            position: 'absolute',
+            backgroundColor: 'gray',
+            top: y0 +'px',
+            left: x0 + 130 +'px',
+            height: '22px',
+            right: 0,
+            zIndex: '901',
+            opacity: 0.5,
+            cursor: 'crosshair'
+        });
+        coverBottom = div('grace-cover-bottom', {
+            position: 'absolute',
+            backgroundColor: 'gray',
+            top: y0 + 22 +'px',
+            left: 0,
+            width: '100%',
+            bottom: 0,
+            zIndex: '901',
+            opacity: 0.5,
+            cursor: 'crosshair'
         });
         cover.innerHTML = '<span style="opacity:1">here is the bug!!!</span>';
         draw = true;
         this.onmousemove = Draw;
-        return false; 
+        coverTop.onmousemove = coverLeft.onmousemove = coverRight.onmousemove = coverBottom.onmousemove = Draw;
+        coverTop.onmouseup = coverLeft.onmouseup = coverRight.onmouseup = coverBottom.onmouseup = endDraw;
 
+        return false; 
     }
 
     function endDraw($e) {
@@ -175,6 +224,8 @@
         this.onmousemove = null;
         cover.onmouseup = cover.onmousedown = null;
         cover.onmousemove = null;
+        coverTop.onmousemove = coverLeft.onmousemove = coverRight.onmousemove = coverBottom.onmousemove = null;
+        coverTop.onmouseup = coverLeft.onmouseup = coverRight.onmouseup = coverBottom.onmouseup = null;
 
         draw = false;
         return false; 
@@ -192,7 +243,6 @@
             backgroundColor: 'gray',
             zIndex: 901
         });
-        //console.log(agent);
 
         input.innerHTML = 
                     '<form id="grace-form" method="post" target="grace-iframe" action="http://test.990731.com/?c=bug&a=report" >' +
@@ -265,11 +315,19 @@
                 cover = g('grace-cover');
             bg.style.display = 'none'; 
             cover.style.display = 'none';  
+            
+            coverTop.style.display = 'none';
+            coverLeft.style.display = 'none';
+            coverRight.style.display = 'none';
+            coverBottom.style.display = 'none';
+
             g('grace-input').style.display = 'none';  
 
             bg.onmousemove = null;
             cover.onmouseup = cover.onmousedown = null;
             cover.onmousemove = null;
+            coverTop.onmousemove = coverLeft.onmousemove = coverRight.onmousemove = coverBottom.onmousemove = null;
+            coverTop.onmouseup = coverLeft.onmouseup = coverRight.onmouseup = coverBottom.onmouseup = null;
         } 
         return false;
     }
@@ -297,7 +355,9 @@
             h = xy.y - y0;
 
         cover.style.width = (w > 130 ? w : 130) +'px';
-        cover.style.height = (h > 22 ? h : 22) +'px';
+        cover.style.height = coverLeft.style.height = coverRight.style.height = (h > 22 ? h : 22) +'px';
+        coverRight.style.left = x0 + (w > 130 ? w : 130) +'px';
+        coverBottom.style.top = y0 + (h > 22 ? h : 22) +'px';
 
         cover.onmouseup = cover.onmousedown = endDraw;
         cover.onmousemove = Draw;
