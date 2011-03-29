@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html, body, ul, li, table, tr, td, h1 {
     margin:0;
     padding:0;
@@ -208,3 +209,193 @@ span.e {
 span.f {
     background: url("../img/heart.png") no-repeat scroll 0 0 transparent
 }
+=======
+html, body, ul, li, table, tr, td, h1 {
+    margin:0;
+    padding:0;
+}
+body {
+    font-family:Tahoma,Verdana,Arial,sans-serif;
+}
+ul, li {
+    list-style:none outside none;
+}
+input, button, a {
+    outline:medium none;
+}
+button:focus {
+    outline:medium none;
+}
+h1 {
+    font-family: 'Allan', serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    /*text-shadow: 2px 2px 2px #aaa;*/
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0.093em;
+    color: #fff;
+    padding: 5px 0 0 10px;
+    /*
+    font-family:Microsoft YaHei,'微软雅黑',SimHei,'黑体';
+    font-weight:normal;
+    */
+}
+a {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:underline;
+}
+a img {
+    border:medium none;
+}
+
+a.blue {
+    color:#439DB7;
+}
+a.black {
+    color:#333333;
+}
+span.time {
+    color:#999999;
+}
+.clear {
+    clear:both;
+}
+
+#box {
+    font-size:12px;
+}
+
+#head, #foot {
+    background-color: #333;
+    height: 45px;
+    overflow: hidden;
+}
+#foot {
+    height: 35px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    right: 0;
+}
+
+.con {
+    position: absolute;
+    background-color: #f3f3f3;
+    top: 45px;
+    bottom: 35px;
+}
+
+div.left {
+    width: 200px;
+    left: 0;
+}
+
+div.main {
+    left: 200px;
+    right: 0;
+    background-color: #262626;
+}
+
+div.main .bar {
+    background:url("../img/bgs2.gif") repeat-x scroll 0 -35px #EBEBEB;
+    border-left:1px solid #B7B7B7;
+    border-right:1px solid #B7B7B7;
+    height:41px;
+    overflow:hidden;
+}
+
+div.bar .tab {
+    display:inline;
+    float:left;
+    margin:5px 0 5px 10px;
+}
+
+div.tab ul {
+    background:url("../img/bgs.gif") repeat-x scroll 0 -185px transparent;
+    height:29px;
+    overflow:hidden;
+}
+
+div.tab li {
+    cursor:pointer;
+    height:29px;
+    line-height:26px;
+    float: left;
+}
+
+div.tab li span {
+    border-right:1px solid #B1B0B0;
+    color:#444444;
+    display:block;
+    padding:0 12px;
+}
+
+div.tab .first {
+    background:url("../img/bgs.gif") no-repeat scroll left -243px transparent;
+}
+div.tab .last {
+    background:url("../img/bgs.gif") no-repeat scroll right -214px transparent;
+}
+div.tab .active {
+    background:url("../img/bgs.gif") repeat-x scroll 0 -272px transparent;
+}
+
+div.left h2 {
+    background:url("../img/bgs2.gif") repeat-x scroll 0 -76px #E7E7E7;
+    color:#848484;
+    font-size:12px;
+    font-weight:normal;
+    height:25px;
+    line-height:25px;
+    margin:0;
+    padding-left:12px;
+}
+
+div.left ul {
+    padding: 5px 0;
+}
+
+div.left li {
+    cursor:pointer;
+    height:25px;
+    line-height:25px;
+    overflow:hidden;
+    position:relative;
+}
+div.left li.active { 
+    background:url("../img/bgs2.gif") repeat-x scroll 0 -101px #57A7B9;
+    color: #fff;
+}
+
+span.icon {
+    height: 20px;
+    margin: 3px 2px 0 20px;
+    width: 20px;
+    float: left;
+    display: inline;
+}
+
+span.a {
+    background: url("../img/page_white_star.png") no-repeat scroll 0 0 transparent
+}
+span.b {
+    background: url("../img/paper_bag.png") no-repeat scroll 0 0 transparent
+}
+span.c {
+    background: url("../img/rocket.png") no-repeat scroll 0 0 transparent
+}
+span.d {
+    background: url("../img/user_silhouette.png") no-repeat scroll 0 0 transparent
+}
+span.e {
+    background: url("../img/hammer_screwdriver.png") no-repeat scroll 0 0 transparent
+}
+span.f {
+    background: url("../img/heart.png") no-repeat scroll 0 0 transparent
+}
+>>>>>>> origin

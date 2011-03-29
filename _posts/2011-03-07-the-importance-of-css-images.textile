@@ -1,0 +1,57 @@
+---
+layout: default
+title: 合理切图的重要性
+---
+
+最近一直在折腾前端的性能速度，前几日改一个小的弹层脚本时，发现点击到显示弹层所费时间非常的不正常，达到了 *485ms* ，认真的检查了JS，没有发
+现问题，在firebug下打开网络面板，问题的原因一目了然了，先过目这悲哀的弹层背景图加载图：
+
+弹层效果：
+!http://blog.xydudu.com/css/images/0307-2.jpg!
+
+图片timeline：
+
+!http://blog.xydudu.com/css/images/0307-1.png!
+
+这么简单的一个弹层，其背景图片竟然达到了117K，作为一个前端，这个很让人不可接受，立马动手，开始优化。
+
+根据 *照片用jpg，动画用gif，其他用png* 的指导方针，首先，我们把背景图全部转化为png8格式。
+
+两张JPG图转成png后，大小对比如下：
+
+*f_a_1.jpg 332字节 ----> f_a_1.min.png 295字节*
+
+*f_a_2.jpg 16441字节 ----> f_a_2.min.png 1520字节*
+
+然后去掉PNG多余信息，进一步压缩，我这里用的到工具是： "pngcrush":http://pmt.sourceforge.net/pngcrush 
+
+转换为对比：
+   
+f_a_0.png *272字节*    ---->  f_a_0.min.png *187字节* 
+
+f_a_1.jpg *332字节*    ---->  f_a_1.min.png *295字节* 
+                     
+f_a_2.jpg *16441字节*  ---->  f_a_2.min.png *1520字节*   
+                     
+f_a_3.png *381字节*    ---->  f_a_3.min.png *301字节*  
+                     
+f_a_4.png *42805字节*  ---->  f_a_4.min.png *382字节* 
+                     
+f_a_5.png *467字节*    ---->  f_a_5.min.png *363字节*  
+                     
+f_a_6.png *393字节*    ---->  f_a_6.min.png *310字节*  
+                     
+f_a_7.png *43724字节*  ---->  f_a_7.min.png *681字节*  
+                     
+
+从 *104815字节* 压缩到了 *4039字节* ，这个比例，实在是惊天地，借 "此文中的一句话":http://www.dbanotes.net/web/best_practices_for_speeding_up_your_web_site_image.html
+    *图片设计的同学啊，请考虑设计面向 Web 的图片，不要动不动就设计超过可接受尺寸之外大家伙，这应该是一种习惯，而不是什么高超的技能，只需要记住就成了。* 
+
+压缩图片只是最开始最简单的一步，在这个基础上，可做的事情还非常多，页面的速度还能更加的快。Sprite图片二次优化，图片预加载
+，这些工作都是不难的，重要的是要有这个思想，把前端页面的性能，速度当做一个网站的基本功能，这才是一个前端（包括JS和CSS）的基本素质。
+
+参考文章：
+"http://ued.taobao.com/blog/2010/12/10/jpg_png/":http://ued.taobao.com/blog/2010/12/10/jpg_png/
+"Web 前端优化最佳实践之 图象篇":http://www.dbanotes.net/web/best_practices_for_speeding_up_your_web_site_image.html
+"Image Optimization 讀書心得":http://josephj.com/entry.php?id=209
+

@@ -1,0 +1,130 @@
+---
+layout: default
+title: 关于js文件加载的一些小思考
+---
+
+前端的性能，JS加载速度算是一个比较重要的指标了，一直在大牛们的文章之间游荡，希望能吸取一些为我所用，无奈大牛太多，这海太
+大，各种文章，思想，越发让我无法下手，于是拨开一切，从零开始，一步一步来。
+
+假定有三个JS文件：
+
+*a.js* : 加载要 1 秒 (要依赖c.js)
+var a = c && 'a';
+
+*b.js* : 加载要 2 秒
+var b = 'b';
+
+*c.js* : 加载要 3 秒 
+var c = 'c';
+
+(**为了模拟加载的时间，三个文件都用php代替**)
+
+传统的方法，按c,b,a顺序依次加载。
+
+{%highlight html linenos%}
+<script src="c.js"></script>
+<script src="b.js"></script>
+<script src="a.js"></script>
+{%endhighlight%}
+
+{%highlight javascript linenos%}
+function print() {
+    var info = document.getElementById("info");
+    info.innerHTML += "<p>" + [].join.call(arguments) + "</p>";  		
+}
+
+print(a);
+print(b);
+print(c);
+{%endhighlight%}
+
+
+输出： a, b, c
+
+其在IE6下的timeline：
+!http://blog.xydudu.com/css/images/load-1.jpg!
+
+可以看到，三个js文件依次单独加载，是串行的，整个时间花了差不多6秒。显然，这样是很让恼火的表现，如果三个文件能同时下载的
+话，理论上只要3秒就能把三个文件下载完成了，这将节约一半的时间。
+
+并行下载JS文件的loader现在已有很多表现很好的作品出现了，这里我用 "headjs":http://headjs.com 来演示JS并行下载的demo。
+
+a, b, c三个文件还是那三个文件。只是这次用headjs来引入。
+
+{%highlight javascript linenos%}
+head.js("c.js", "b.js", "a.js", function() {
+
+    print(a);
+    print(b);
+    print(c);
+
+});
+{%endhighlight%}
+
+
+
+还是正常输出： a, b, c
+
+再来查看IE6下的timeline：
+!http://blog.xydudu.com/css/images/load-test-2.jpg!
+
+三个文件并行下载，总的时间减小到差不多3秒，这对页面的渲染速度提升是非常大的。这里head.js中三个文件是同时传入的，headjs在
+并行下载的同时强制的使三个文件按传入顺序执行，所以a中的JS能顺利的执行。如果head.js分别引入三个文件，会发什么什么情况呢？
+
+{%highlight javascript linenos%}
+head.js('c.js', function() {
+    print(c); 
+});
+
+head.js('b.js', function() {
+    print(b); 
+});
+
+head.js('a.js', function() {
+    print(a); 
+});
+
+{%endhighlight%}
+
+这个时候，IE6报错了: 'c' 未定义，看下timeline：
+
+!http://blog.xydudu.com/css/images/load-test-3.jpg!
+
+可以看出，当a加载完时，c还没加载完，而这个时候a中script已经执行，这时c是未定义的，所以便有了上述的错误，导致这个错误的原
+原因便是JS文件并行下载后，没有按规定的顺序来执行。headjs提供一个ready的方法，可以解决上面这个问题，但是查看其timeline，
+可知，利用ready来解决这个问题就是让a在c加载完后加载，这就又不是并行下载了，加长的脚本下载的时间，这个并不是最优的解决办
+办法。
+
+用head.ready来解决问题的timeline
+!http://blog.xydudu.com/css/images/load-test-4.jpg!
+
+拜读大牛 *Nicholas C. Zakas* 的文章 "Separating JavaScript download and execution":http://www.nczonline.net/blog/2011/02/14/separating-javascript-download-and-execution/
+
+如果能把JS的下载和执行分开，就能比较完美的解决上述问题了。在我理想中的代码应该是：
+
+{%highlight javascript linenos%}
+head.js('c.js', function() {
+    print(c); 
+});
+
+head.js('b.js', function() {
+    print(b); 
+});
+
+head.onlyload('a.js');
+
+head.ready('c', function() {
+    a.execut();
+    print(a); 
+});
+
+{%endhighlight%}
+
+有一个load的方法，只负责加载JS但不执行，而在需要的地方执行execut方法执行。
+
+
+
+
+
+
+    
