@@ -1,0 +1,58 @@
+---
+layout: default
+title: DOM DocumentFlagments
+---
+
+    经常会遇到一种情况，从某后端API接口中拉取一串数据，然后组合成HTML，再append到body或某elem中。比如有下列数据：
+
+
+{% highlight javascript linenos %}
+    var data = [
+        {href: 'a.html', text: 'a'},
+        {href: 'b.html', text: 'b'},
+        {href: 'c.html', text: 'c'},
+        {href: 'd.html', text: 'd'}
+    ];
+{% endhighlight %}
+
+    当数据量如此之小时，无论何法，只要你不要太折腾，相信浏览器都能给你比较好的感受。但是当数据量很大，而你代码不讲究一下的话
+，你就会有想死的感觉。
+
+    So, what's going on?
+
+    浏览器渲染页面，要知道DOM结构，且各elem放哪里，高啊，宽啊，位置啊，大小啊，着色啊，之类的，很复杂的一些计算，这些过程称
+之为 reflow 还有 repaint 。显示 reflow 之类的搞多了，计算量就上去了，浏览器就悲剧了。
+
+    而上面例子中的 append 到 body 中，就非常暴力的 reflow 了，显然暴力的多了，就慢了。
+
+    少暴力几次，理论上就是得把上面的数据组合成的 elem 缓存起来，减少 append 次数，也就减少了 reflow 的次数。得，缓存一些 dom
+集合有很多方法的，但推荐的当然是 "w3c":http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-B63ED1A3 标准的 
+
+        DocumentFragment
+
+    下面一段简单的代码：
+
+{% highlight javascript linenos %}
+    
+    var 
+    dataItem,
+    a,
+    fragment = document.createDocumentFragment();
+    while (data.length) {
+        dataItem = data.shift();
+        a = document.createElement('a');
+        a.text = dataItem.text;
+        a.href = dataItem.href;
+        fragment.appendChild(a);
+    } 
+
+    document.body.appendChild(fragment);
+
+{% endhighlight %}
+
+就是这样吧，应用实例可参见： http://ent.hunantv.com/v/supergirl2011/wall/index.html
+
+--------------------------
+--------------------------
+http://ejohn.org/blog/dom-documentfragments/
+http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-B63ED1A3
