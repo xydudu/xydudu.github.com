@@ -5,7 +5,7 @@ title: Interesting and useful hacks
 
 在 "Quora":http://www.quora.com/What-are-the-most-interesting-HTML-JS-DOM-CSS-hacks-that-most-web-developers-dont-know-about 上读到一题，收获颇多，记录之。
 
-# setTimeout 和 setInterval 参数的传递
+h3. setTimeout 和 setInterval 参数的传递
 
 当有一函数
 {% highlight javascript linenos %}
@@ -46,7 +46,7 @@ title: Interesting and useful hacks
 
 Cool!!! all right?
 
-# String functions
+h3. String functions
 
 在 "w3school":http://www.w3school.com.cn/js/jsref_obj_string.asp 中，有好多函数很不常用，但却很有用，如 link() ：
 {% highlight javascript linenos %}
@@ -56,7 +56,7 @@ Cool!!! all right?
 
 {% endhighlight %}
 
-# 变量类型转换
+h3. 变量类型转换
 
 String，Number，Array 之间的转换有许多的函数可用，看起来很简单，但如果知道下面一些奇淫巧技，对编码的效率是非常有提高的。
 {% highlight javascript linenos %}
@@ -73,7 +73,7 @@ String，Number，Array 之间的转换有许多的函数可用，看起来很�
     
 {% endhighlight %}
 
-# JSON的转换
+h3. JSON的转换
 
 把一json字符串转为 JSON 可以用 eval(), 还可以用 JSON.parse，但 eval 性能不好， JSON.parse IE浏览器中是个悲剧，其实还有一
 种方法：
