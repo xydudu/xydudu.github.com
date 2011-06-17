@@ -10,9 +10,9 @@ h3. setTimeout 和 setInterval 参数的传递
 当有一函数
 {% highlight javascript linenos %}
 
-    function a() {
-        alert('hello world');    
-    }
+function a() {
+    alert('hello world');    
+}
 
 {% endhighlight %}
 
