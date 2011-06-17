@@ -8,6 +8,7 @@ title: Interesting and useful hacks
 h3. setTimeout 和 setInterval 参数的传递
 
 当有一函数
+
 {% highlight javascript linenos %}
 
 function a() {
