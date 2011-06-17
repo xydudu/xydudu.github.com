@@ -5,51 +5,62 @@ title: Interesting and useful hacks
 
 在 "Quora":http://www.quora.com/What-are-the-most-interesting-HTML-JS-DOM-CSS-hacks-that-most-web-developers-dont-know-about 上读到一题，收获颇多，记录之。
 
-## setTimeout 和 setInterval 参数的传递
+# setTimeout 和 setInterval 参数的传递
 
 当有一函数
 {% highlight javascript linenos %}
+
     function a() {
         alert('hello world');    
-    };
+    }
+
 {% endhighlight %}
 
 你要在 setTimeout 中调用时，你可以：
 {% highlight javascript linenos %}
+
     setTimeout(a, 1000); 
+
 {% endhighlight %}
 
 这样写简单，美观。但是当此函数有参数时，setTimeout 就得：
 {% highlight javascript linenos %}
+
     setTimeout( function() {
         a( arg1, arg2 );    
     }, 1000 ); 
+
 {% endhighlight %}
 
 一行变三行，外面多包个function，真是让人郁闷。但原来 setTimout是可以直接参数传递的。你可以这样：
 {% highlight javascript linenos %}
+
     function a( x, y ) {
         alert( x + y); 
     }
     setTimeout( a, 1000, 1, 2 ); 
+
 {% endhighlight %}
 
-        *Note that this isn't supported on IE (not even IE9).*
+*Note that this isn't supported on IE (not even IE9).*
 
 Cool!!! all right?
 
-## String functions
+# String functions
 
 在 "w3school":http://www.w3school.com.cn/js/jsref_obj_string.asp 中，有好多函数很不常用，但却很有用，如 link() ：
 {% highlight javascript linenos %}
+
     'I am a link'.link('http://xydudu.com');
     // <a href="http://xydudu.com">I am a link</a>
+
 {% endhighlight %}
 
-## 变量类型转换
+# 变量类型转换
 
 String，Number，Array 之间的转换有许多的函数可用，看起来很简单，但如果知道下面一些奇淫巧技，对编码的效率是非常有提高的。
 {% highlight javascript linenos %}
+
     var myVar   = "3.14159",  
         str     = ""+ myVar,//  to string  
         int     = ~~myVar,  //  to integer  
@@ -62,12 +73,14 @@ String，Number，Array 之间的转换有许多的函数可用，看起来很�
     
 {% endhighlight %}
 
-## JSON的转换
+# JSON的转换
 
 把一json字符串转为 JSON 可以用 eval(), 还可以用 JSON.parse，但 eval 性能不好， JSON.parse IE浏览器中是个悲剧，其实还有一
 种方法：
 {% highlight javascript linenos %}
+
     new Function('return {a:1}')();
+
 {% endhighlight %}
 
 
