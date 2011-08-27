@@ -1,0 +1,32 @@
+---
+layout: default
+title: GAE mail service
+---
+
+周末，阳光大好，不想出门，胡乱吃点东西，咖啡已喝，音箱打开，It's time to coding now。
+
+
+我需要一个mail service，显然，在无特别要求（GAE mail service is not support custom mail domain）的情况下，我采用一个云端服务在效率与稳定性上要先说些，于是我选择了GAE，因为我要做的应用不但需要发邮件还需要收邮件，而amazon mail service好像只支持发邮件。
+
+OK，打开 "Google App Engine":http://code.google.com/appengine/ 然后 get start。利用自己仅有的python基础，一步一步的来吧。 
+
+h3. 构建一个发邮件的页面
+
+首页需要一个页面来进行发邮件的操作，一个简单的表单足矣，写一个名为 index.html 的模板里面展示一个form，python代码如下：
+
+{% highlight python linenos %}
+
+class Index( webapp.RequestHandler ):
+
+    def get( self ):
+        """ index"""
+        directory = os.path.dirname( __file__ )
+        path = os.path.join( directory, 'index.html' )
+        rendered = template.render( path, {} )
+
+        self.response.out.write( rendered )
+
+{% endhighlight %}
+
+截图如下：
+!http://blog.xydudu.com/css/images/2011-08-27-1.jpg!
