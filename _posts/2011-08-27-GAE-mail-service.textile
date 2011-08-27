@@ -41,7 +41,7 @@ OK，这是一个 POST 请求。利用 webapp.RequestHandler 的 request 方法�
     
     def post( self ):
         directory = os.path.dirname( __file__ )
-        values = dict( ( k, cgi.escape( self.request.post(k) ) ) for k in ( 'content',
+        values = dict( ( k, cgi.escape( self.request.get(k) ) ) for k in ( 'content',
                                                                            'selfname' ))
         if not values[ 'selfname' ].strip():
             self.handle_error('What is your name?')
@@ -49,7 +49,7 @@ OK，这是一个 POST 请求。利用 webapp.RequestHandler 的 request 方法�
         #send
         try:
             message = mail.EmailMessage( sender = EMAIL_FOR_SEND,
-                                   to = self.request.post( 'email' ),
+                                   to = self.request.get( 'email' ),
                                    subject = 'Hey, Just reply! ' )
 
             message.reply_to = 'your real email address'
