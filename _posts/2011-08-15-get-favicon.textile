@@ -6,9 +6,9 @@ title: 获取指定网站的favicon服务
 很弱的一个服务，权当练习nodejs与coffeeScript，这段时间基本上写的代码都是如此。有一种爱好其实是很不错的感觉，特别是与你的
 工作有关，当你在这种玩乐中发现或创造的东西给工作带来了便利，实在是让我惊喜与快乐。
 
-此服务地址为："favicon.xydudu.com":http://favicon.xydudu.com
-代码托管在："github":https://github.com/xydudu/favicon-service
-服务运行在："dotcloud.com":http://www.dotcloud.com/
+此服务地址为： "favicon.xydudu.com":http://favicon.xydudu.com 
+代码托管在： "github":https://github.com/xydudu/favicon-service  
+服务运行在： "dotcloud.com":http://www.dotcloud.com/ 
 
 话说，越来越有在云端编程的感觉了，你可以在公司写，在家接着写，甚至拿你的手机终端来写，这是多么让人愉快的感觉。
 
