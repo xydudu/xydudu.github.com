@@ -5,7 +5,7 @@ body {
     text-shadow: 0 0 0 transparent;
     font-size: 16px;
     line-height: 22px;
-    margin: 22px;
+    margin: 22px 10%;
 }
 
 
@@ -35,34 +35,4 @@ li cite {
     font-size: .8em;
     padding-left: 1em;
 }
-
-p { color:gray; font-size: .8em; clear: both }
-
-ul.photos { list-style: none; clear: both; overflow: hidden; margin: 1em 2.5em .5em 2.5em; padding: 0;}
-
-ul.photos li { float: left; padding-left: 2px; cursor: pointer; }
-
-ul.photos li img {
-    -moz-border-radius: 40px;
-    -khtml-border-radius: 40px;
-    -webkit-border-radius: 40px;
-    border-radius: 40px;
-    cursor: pointer;
-    opacity: .5;
-    -webkit-transition: opacity 250ms ease-out;
-    -moz-transition: opacity 250ms ease-out;
-
-}
-
-ul.photos li img:hover {
-    opacity: 1;
-}
-
-div#big-photo { padding-left: 2.5em; clear: both; }
-
-p#photo-bar { margin: 0 3em; padding: 0; clear:both;}
-
-p#photo-bar a { margin-left: 1em; }
-
-ul.nodot { list-style:none }
 
