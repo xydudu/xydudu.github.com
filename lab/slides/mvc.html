@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>mvc</title>
+	
+	<meta name="description" content="A jQuery library for modern HTML presentations">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="http://imakewebthings.com/deck.js/core/deck.core.css">
+	<link rel="stylesheet" href="http://imakewebthings.com/deck.js/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="http://imakewebthings.com/deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="http://imakewebthings.com/deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="http://imakewebthings.com/deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="http://imakewebthings.com/deck.js/extensions/hash/deck.hash.css">
+	
+	<!-- Theme CSS files (menu swaps these out) -->
+	<link rel="stylesheet" id="style-theme-link" href="http://imakewebthings.com/deck.js/themes/style/neon.css">
+	<link rel="stylesheet" id="transition-theme-link" href="http://imakewebthings.com/deck.js/themes/transition/horizontal-slide.css">
+	
+	<!-- Custom CSS just for this page -->
+	<link rel="stylesheet" href="introduction.css">
+	
+	<script src="http://imakewebthings.com/deck.js/modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+
+<div class="slide" id="1"><h1>前端MVC实践</h1>
+<h3>@xydudu (xydudu.com)</h3>
+<h4>hunantv.com</h4>
+</div><div class="slide" id="2"><h2>前端MVC是什么？</h2>
+<ul>
+<li>
+<h4>今天不讲概念</h4>
+</li>
+<li>
+<h4>示例才是王道</h4>
+</li>
+</ul>
+</div><div class="slide" id="3"><h2>现状</h2>
+<ul>
+<li>
+<h3>现有前端MVC框架</h3>
+<ul>
+<li>
+<h4>Backbone.js</h4>
+</li>
+<li>
+<h5>Ember.js</h5>
+</li>
+<li>
+<h5>JavaScriptMVC</h5>
+</li>
+<li>
+<h5>Spine.js</h5>
+</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</div><div class="slide" id="4"><h1>More and More…</h1>
+</div><div class="slide" id="5"><h2>今天以Backbone为基础</h2>
+<h5>通过实现一个小例子，理解MVC基础</h5>
+</div><div class="slide" id="6"><h2>Hello World</h2>
+<h4>How Backbone.View shows Hello world</h4>
+<pre><code>var HelloView = Backbone.View.extend({
+
+    render: function() {
+        this.$el.html( 'hello world' );
+        return this;
+    }
+
+});
+
+// 调用
+var hello = new HelloView().render().el;
+$( 'body' ).html( hello );
+</code></pre>
+</div><div class="slide" id="7"><h2>Backbone.View</h2>
+<ul>
+<li>
+<h3>像不像一个 Element ?</h3>
+</li>
+<li>
+<h3>属性</h3>
+</li>
+<li>
+<h3>方法</h3>
+</li>
+<li>
+<h3>事件</h3>
+</li>
+</ul>
+</div><div class="slide" id="8"><h1>嗯，赶快进入例子吧！</h1>
+</div><div class="slide" id="9"><h2>Backbone.Router (Controller)</h2>
+<h3>应用的控制器，大脑</h3>
+<h3>根据捕获的 Url Hash Fragments 变化而执行相应代码</h3>
+</div><div class="slide" id="10"><h2>URL Hash Fragments?</h2>
+<ul>
+<li>
+<h4>https://twitter.com/#!/xydudu</h4>
+</li>
+<li>
+<h3>( #!/xydudu )</h3>
+</li>
+<li>
+<h4>"#"后面的就是啦！</h4>
+</li>
+</ul>
+</div><div class="slide" id="11"><h2>先交待要做个什么示例</h2>
+<h3>图片墙 (布局嘛，咱是瀑布流)</h3>
+</div><div class="slide" id="12"><h2>Controller</h2>
+<pre><code>var Router = Backbone.Router.extend({
+    routes: {
+        '': 'list',
+        '/list': 'list',
+        '/view/:key': 'view'
+    },
+    list: function() {
+        // 照片列表页代码     
+    },
+    view: function( name ) {
+        // 照片页代码     
+    }
+});
+
+// 调用
+new Router();
+Backbone.history.start();
+////Backbone.history.start({pushState: true});
+</code></pre>
+</div><div class="slide" id="13"><h2>Backbone.history</h2>
+<h3>保障浏览器前进后退</h3>
+<h3>监测Hash fragment，传递到Router</h3>
+</div><div class="slide" id="14"><h1>差点忘记了</h1>
+</div><div class="slide" id="15"><h1>Model 是什么？</h1>
+</div><div class="slide" id="16"><h2>Backbone.Model</h2>
+<ul>
+<li>
+<h3>数据模型</h3>
+</li>
+<li>
+<h3>计算，验证，设置</h3>
+</li>
+<li>
+<h3>事件</h3>
+<pre><code>.bind( 'change:title', callback )
+</code></pre>
+</li>
+</ul>
+</div><div class="slide" id="17"><h2>示例</h2>
+<pre><code>var PhotoModel = Backbone.Model.extend({
+    urlRoot: '/api/view'
+});
+
+// 调用
+var photo = new PhotoModel({id: 'photo's key'});
+photo.fetch();
+photo.on( 'change', function() {
+    console.log( photo.toJSON() );  
+});
+</code></pre>
+</div><div class="slide" id="18"><h1>咱做的例子，可不是只有一张图片！</h1>
+</div><div class="slide" id="19"><h2>所以..</h2>
+</div><div class="slide" id="20"><h2>Backbone.Collection</h2>
+<ul>
+<li>
+<h3>Model的集合</h3>
+</li>
+<li>
+<h3>方便的操作 (Underscore)</h3>
+<ul>
+<li>forEach (each)</li>
+<li>map</li>
+<li>filter (select)</li>
+<li>shuffle</li>
+</ul>
+</li>
+</ul>
+</div><div class="slide" id="21"><h2>结合Model</h2>
+<pre><code>var PhotoCollection = Backbone.Collection.extend({
+    model: PhotoModel,
+    url: '/api/list'
+});
+
+// 调用
+var photos = new PhotoCollection();
+photos.fetch();
+photos.on( 'reset', function() {
+    console.log( photos.toJSON() ); 
+});
+</code></pre>
+</div><div class="slide" id="22"><h2>把数据列表渲染出来</h2>
+<ul>
+<li>
+<h3>When?</h3>
+<pre><code>//数据准备好后，触发render事件
+photos.on( 'reset', 'render function' );
+</code></pre>
+</li>
+<li>
+<h3>How?</h3>
+<pre><code>photos.each(function( $model ) {
+    // model + template = Whatever Your Want.
+});
+</code></pre>
+</li>
+</ul>
+</div><div class="slide" id="23"><h2>模板</h2>
+<ul>
+<li>
+<h3>Backbone支持任何javascript模板引擎</h3>
+<ul>
+<li>Mustache.js </li>
+<li>Haml-js</li>
+<li>Eco</li>
+</ul>
+</li>
+<li>
+<h3>可以不用模板引擎来组合页面</h3>
+<pre><code>document.createElement
+…
+</code></pre>
+<ul>
+<li>
+<h3>用你最顺手的</h3>
+<p>比如我用 <strong>Underscore</strong> 自带的 _.template</p>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="slide" id="24"><h2>嗯！我们的照片列表就出来了!</h2>
+<ul>
+<li><strong>PhotoCollection</strong></li>
+<li><strong>PhotoModel</strong></li>
+<li>
+<p><strong>PhotoView</strong></p>
+<pre><code>var list = new PhotoCollection();
+list.on( 'reset', function() {
+    this.each(renderItem);
+}, list);
+
+var renderItem = function() {/*…*/};
+</code></pre>
+</li>
+</ul>
+</div><div class="slide" id="25"><h1>演示下demo…</h1>
+</div><div class="slide" id="26"><h2>关于单张图片的显示</h2>
+<ul>
+<li>
+<h3>PhotoModel 完成了</h3>
+</li>
+<li>
+<h3>PhotoBigView ?</h3>
+<ul>
+<li>可以从Backbone.View extend</li>
+<li>也可以从 PhotoView extend</li>
+</ul>
+</li>
+<li>
+<h3>PhotoCollection 可以用么？</h3>
+</li>
+</ul>
+</div><div class="slide" id="27"><h2>其实方法永远不是唯一</h2>
+<h4>找到适合项目的方法</h4>
+</div><div class="slide" id="28"><h1>示例最终的演示</h1>
+</div><div class="slide" id="29"><h2>这东西到底什么时候用？</h2>
+<ul>
+<li>
+<h3>Web App (single page application)</h3>
+</li>
+<li>
+<h3>手机端</h3>
+</li>
+<li>
+<h3>强调交互，速度，性能</h3>
+</li>
+</ul>
+</div><div class="slide" id="30"><h2>困惑</h2>
+<ul>
+<li>
+<h3>代码量增加了</h3>
+</li>
+<li>
+<h3>项目看起来复杂了</h3>
+</li>
+<li>
+<h3>前端苦逼了</h3>
+</li>
+</ul>
+</div><div class="slide" id="31"><h2>一切都不是绝对的</h2>
+<h3>适合最重要</h3>
+<h3>别忘了前端的基本工作</h3>
+</div><div class="slide" id="32"><h1>性能，速度，用户体验</h1>
+</div><div class="slide" id="33"><h1>谢谢，请提问</h1>
+</div>
+
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="number" name="slidenum" id="goto-slide">
+	<input type="submit" value="Go">
+</form>
+
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+<script>window.jQuery</script>
+
+<!-- Deck Core and extensions -->
+<script src="http://imakewebthings.com/deck.js/core/deck.core.js"></script>
+<script src="http://imakewebthings.com/deck.js/extensions/menu/deck.menu.js"></script>
+<script src="http://imakewebthings.com/deck.js/extensions/goto/deck.goto.js"></script>
+<script src="http://imakewebthings.com/deck.js/extensions/status/deck.status.js"></script>
+<script src="http://imakewebthings.com/deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="http://imakewebthings.com/deck.js/extensions/hash/deck.hash.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	// Deck initialization
+	$.deck('.slide');
+	
+	$('#style-themes').change(function() {
+		$('#style-theme-link').attr('href', $(this).val());
+	});
+	
+	$('#transition-themes').change(function() {
+		$('#transition-theme-link').attr('href', $(this).val());
+	});
+
+    $('pre').click(function (){
+	$(this).toggleClass('highlighted');
+    });
+});
+</script>
+
+</body>
+</html>
