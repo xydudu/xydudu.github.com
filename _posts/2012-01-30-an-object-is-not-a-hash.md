@@ -1,3 +1,5 @@
+---
+
 date: 2012-1-31
 title: [My read note] An Object is not a Hash
 layout: default

@@ -1,3 +1,5 @@
+---
+
 date: 2012-05-11
 title: the Performance Golden Rule
 layout: default
