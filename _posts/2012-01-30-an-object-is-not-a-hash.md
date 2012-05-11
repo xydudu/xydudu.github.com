@@ -1,7 +1,7 @@
 ---
 
-date: 2012-1-31
-title: [My read note] An Object is not a Hash
+date: 2012-01-31
+title: An Object is not a Hash
 layout: default
 
 ---
