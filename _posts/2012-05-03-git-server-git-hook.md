@@ -1,7 +1,6 @@
 ---
-
-date: 2012-05-03
 title: 搭建git服务器及利用git hook自动布署代码
+date: 2012-05-03
 layout: default
 
 ----
