@@ -78,16 +78,14 @@ layout: default
 meteor 提供了一种非常方便的模板机制，让我们开发起来非常的舒服，比如上面的例子，我们再扩展开来，编辑index.html:
 
 {% highlight html linenos %}
-
-	<head>…</head>
-	<body>
-		<h1>Hello World</h1>
-		{{> hello }}
-	</body>
-	<template name="hello">
-		<p>This is from template</p>
-	</template>
-
+<head>…</head>
+<body>
+	<h1>Hello World</h1>
+	{{> hello }}
+</body>
+<template name="hello">
+	<p>This is from template</p>
+</template>
 {% endhighlight %}
 
 当然，meteor也可以很方便的从javascript文件中定义变量，下面我们新建一个javascript文件 app.js，并写入：
@@ -103,12 +101,10 @@ meteor 提供了一种非常方便的模板机制，让我们开发起来非常�
 
 然后在html中通过 {{变量名}} 来访问javascript文件定义的变量值。如：
 
-{% highlight html linenos %}	
-
-	<template name="hello">
-		<p>This is from template, and I am {{ who }}</p>
-	</template>
-
+{% highlight html linenos %}
+<template name="hello">
+    <p>This is from template, and I am {{ who }}</p>
+</template>
 {% endhighlight %}
 
 meteor的模板系统是非常强大的，后面在实例中可以慢慢体会。
