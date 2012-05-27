@@ -22,12 +22,14 @@
   <div id="container">
     <aside id="topbar">
       <div class="inner">
-        <h1><a href="/">engel</a></h1>
+        <h1><a href="/">Lian Hsueh</a></h1>
 
         <ul id="quick-links">
           <li><a href="/about.html">about</a></li>
-	        <li><a href="/rss.xml">rss</a></li>
-	        <li><a href="/atom.xml">atom</a></li>
+	      <li><a href="http://github.com/xydudu">github</a></li>
+	      <li><a href="http://twitter.com/xydudu">twitter</a></li>
+	      <li><a href="http://weibo.com/xydudu">weibo</a></li>
+	      <li><a href="/atom.xml">atom</a></li>
         </ul>
 
         <div class="more">
@@ -38,7 +40,7 @@
           {% if site.posts != empty %}
           <h2>recent posts</h2>
           <ul id="recent-posts">
-            {% for post in site.posts limit: 20 %}
+            {% for post in site.posts limit: 30 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
             {% endfor %}
           </ul>
@@ -53,11 +55,11 @@
 
         <footer>
 	        <div id="hcard-Hans-Engel" class="vcard">
-            <a class="email fn n" href="mailto:engel@engel.uk.to">
-              <span class="given-name">Hans</span>
-              <span class="family-name">Engel</span>
+            <a class="email fn n" href="mailto:xuedudu@gmail.com">
+              <span class="given-name">Lian</span>
+              <span class="family-name">Hsueh</span>
             </a> &mdash; <span class="adr">
-              <span class="locality">Phoenix</span>, <span class="region">Arizona</span>, <span class="country-name">USA</span>
+              <span class="locality">ChangSha</span>, <span class="region">HuNan</span>, <span class="country-name">China</span>
             </span>
 	        </div>
         </footer>
