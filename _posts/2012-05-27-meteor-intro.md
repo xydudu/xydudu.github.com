@@ -9,7 +9,7 @@ layout: default
 ### What?
 先很简单的介绍下meteor，它的官网是：[meteor.com](http://meteor.com)，官方的介绍是：
 
-		Meteor is a set of new technologies for building top-quality web apps in a fraction of the time, whether you're an expert developer or just getting started.
+> Meteor is a set of new technologies for building top-quality web apps in a fraction of the time, whether you're an expert developer or just getting started.
 	
 翻译成中文大概就是：Meteor 是一套让用户在短时间内搭建一个高质量网页应用的新技术，面向的用户不仅是专业的开发者，还包括刚入门者。
 
