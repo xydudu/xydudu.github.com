@@ -6,9 +6,9 @@ html, body {
 
 body {
   background-color: #fafafa;
-  font: 19px 'Baskerville';
+  font: 16px 'Baskerville';
   color: #222;
-  line-height: 25px;
+  line-height: 30px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -18,12 +18,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 30px;
   line-height: 64px;
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 25px;
   line-height: 48px;
 }
 
@@ -60,7 +60,7 @@ pre, tt, code {
 }
 
 #container {
-  max-width: 650px;
+  max-width: 780px;
   margin: 25px auto;
 }
 
