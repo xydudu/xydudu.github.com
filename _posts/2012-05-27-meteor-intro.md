@@ -18,10 +18,9 @@ layout: default
 ### Features
 其官网上列了9个特点，就不一一复制了，我个人较喜欢的几个特点是：
 
-	- Pure Javscript 这个不必多说，做为一个前端，这就是Meteor直接吸引我的主因
-	- Live page updates 开发时的页面自动更新，这对开发效率是很有帮助的
-	- Clean, powerful data synchronization 强大的数据同步能力，
-		(这个有人喷会有安全问题，但是不否认这个让我在开发时体验非常棒)
+* Pure Javscript 这个不必多说，做为一个前端，这就是Meteor直接吸引我的主因
+* Live page updates 开发时的页面自动更新，这对开发效率是很有帮助的
+* Clean, powerful data synchronization 强大的数据同步能力，(这个有人喷会有安全问题，但是不否认这个让我在开发时体验非常棒)
 
 其它的一些特点就不多说的.
 
@@ -54,8 +53,10 @@ layout: default
 进入到helloworld文件夹，新建一个html文件: index.html。编辑 index.html:
 
 {% highlight html linenos %}
+
 	<title>Hello World</title>
 	<body>Hello World</body>
+
 {% endhighlight %}
 
 启动：meteor，在浏览器就能看到效果了。
@@ -64,9 +65,11 @@ layout: default
 接着上面的，再新建一个 style.css 的文件，我们加点样式看看，注意你的浏览器变化：
 
 {% highlight css linenos %}	
+
 	body {
 		color： red;
 	}
+
 {% endhighlight %}
 
 可以看到，当你保存style.css后，浏览器立即就做出了相应反应，这种实时反应开发结果的开发模式显然是很能提高开发效率的，这不是meteor首创，有很多类似的库与工具都能实现相似的效果，但是meteor是集体到自身内部的，你完全无需去特别的配置，非常的简单，对于初学者来讲是很是友好。
@@ -75,6 +78,7 @@ layout: default
 meteor 提供了一种非常方便的模板机制，让我们开发起来非常的舒服，比如上面的例子，我们再扩展开来，编辑index.html:
 
 {% highlight html linenos %}
+
 	<head>…</head>
 	<body>
 		<h1>Hello World</h1>
@@ -83,23 +87,28 @@ meteor 提供了一种非常方便的模板机制，让我们开发起来非常�
 	<template name="hello">
 		<p>This is from template</p>
 	</template>
+
 {% endhighlight %}
 
 当然，meteor也可以很方便的从javascript文件中定义变量，下面我们新建一个javascript文件 app.js，并写入：
 
 {% highlight javascript linenos %}
+
 	if (this.Template) 
     	Template.hello.who = function() {
         	return 'Lian Hsueh'; 
     	};
+
 {% endhighlight %}
 
 然后在html中通过 {{变量名}} 来访问javascript文件定义的变量值。如：
 
 {% highlight html linenos %}	
+
 	<template name="hello">
 		<p>This is from template, and I am {{ who }}</p>
 	</template>
+
 {% endhighlight %}
 
 meteor的模板系统是非常强大的，后面在实例中可以慢慢体会。
@@ -110,7 +119,9 @@ meteor的模板系统是非常强大的，后面在实例中可以慢慢体会�
 我们可以做个简单的测试来验证一下，编辑app.js，加入一行：
 	
 {% highlight javascript linenos %}
+
 	console.log('Hey, can you see me?');
+    
 {% endhighlight %}
 
 保存后查看终端与浏览器console，都能见到输出，证明 app.js 文件是同时运行在浏览器与服务端。
@@ -120,11 +131,13 @@ meteor的模板系统是非常强大的，后面在实例中可以慢慢体会�
 meteor很好的解决了这个问题，简单的应用中，比如我们这个helloworld程序，只是包括很小部分的代码，你可以直接在 app.js 中通过 Meteor.is_client 与 Meteor.is_server 来限定哪些在浏览器中执行，哪些只在服务端中执行，如上面的给模板设定变量的语句，只需要在浏览器端执行，则可以这样写：
 
 {% highlight javascript linenos %}
+
 	if (Meteor.is_client) {
 		Template.hello.who = function() {
 			return 'Lian Hsueh';
 		};
 	}
+
 {% endhighlight %}
 
 而像一些可以同时应用于前后端的脚本，你就不需要做特别的处理了，一份代码服务于前后端，比之前后端分离肯定是要高效很多。比如一个表单的验证脚本，通常你要前端一个检测的脚本，后端也要维护一份相同功能的代码，而此时我们只需要维护一份代码就好。
