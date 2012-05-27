@@ -16,10 +16,12 @@ HTML 4 为 script 标签定义了 defer 属性，指明了该元素所含的脚�
 ###动态加载脚本
 
 {% highlight javascript linenos %}
-	var script = document.createElement(''script);
-	script.type = "text/javascript";
-	script.src = "file.js";
-	document.getElementsByTagName("head")[0].appendChild(script);
+
+var script = document.createElement(''script);
+script.type = "text/javascript";
+script.src = "file.js";
+document.getElementsByTagName("head")[0].appendChild(script);
+
 {% endhighlight %}
 
 Firefox, Opera, Chrome，Safari 3+ 在file.js加载完后会触发 **onload** 事件。
@@ -29,9 +31,11 @@ IE则是触发 **onreadystatechange** 事件，然后检测 script.readyState �
 动态加载多个脚本时会遇到较烦的问题就是文件的执行顺序，比如现有：a.js, b.js, c.js 三个文件，b.js 需要用到 a.js 的API，c.js 需要用到 b.js 的API，此时你用动态加载方法加载三个文件，如：
 
 {% highlight javascript linenos %}
-	loadScript("a.js");
-	loadScript("b.js");
-	loadScript("c.js");
+
+loadScript("a.js");
+loadScript("b.js");
+loadScript("c.js");
+
 {% endhighlight %}	
 
 这三个文件的执行顺序只在 Firefox 与 Opera 中是按你指定的顺序执行的，而其它的浏览器中，这个执行顺序是按文件加载完成的时间来执行的，这就不可控了。所以动态加载多个文件最好的解决办法便是把三个文件按顺序合并为一个文件。
