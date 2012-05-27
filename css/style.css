@@ -1,0 +1,206 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #fafafa;
+  font: 19px 'Baskerville';
+  color: #222;
+  line-height: 25px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  margin: 5px 0px;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 64px;
+}
+
+h2 {
+  font-size: 30px;
+  line-height: 48px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+a {
+  color: #840000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #aa0000;
+}
+
+pre, blockquote {
+  border-left: 1px solid #ccc;
+  margin: 0 0 20px 30px;
+  padding-left: 20px;
+}
+
+pre, tt, code {
+  font-family: monospace;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.inner {
+  padding: 5px 21px;
+}
+
+#container {
+  max-width: 650px;
+  margin: 25px auto;
+}
+
+aside#topbar {
+  padding: 16px 0 41px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+aside#topbar .more {
+  display: none;
+}
+
+aside#topbar ul#quick-links {
+  list-style: none;
+  float: right;
+  margin: 2px 0 0 0;
+}
+
+aside#topbar ul#quick-links li {
+  display: inline-block;
+  margin: 0 10px;
+  border: none;
+}
+
+aside#topbar h1 {
+  margin: 0px;
+  line-height: 24px;
+  float: left;
+}
+
+aside#topbar h1 a {
+  color: inherit;
+  font-weight: inherit;
+}
+
+aside#topbar h2 {
+  color: #ece7d3;
+  font-size: 19px;
+}
+
+aside#topbar ul {
+  padding-left: 15px;
+  list-style: none;
+}
+
+aside#topbar ul li {
+  border-bottom: 1px solid #47484d;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+aside#topbar ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
+}
+
+article {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  margin: 40px 0 20px 0;
+}
+
+article#single {
+  margin-top: 0px;
+}
+
+article:first-child {
+  margin-top: 0px;
+}
+
+article header h1 {
+  margin-bottom: 0px;
+}
+
+article header time, #archive li time {
+  color: #888;
+}
+
+#home ul.posts {
+  list-style: none;
+}
+
+#home ul.posts > li {
+  margin-bottom: 30px;
+}
+
+#pagination {
+  margin: 30px;
+  text-align: center;
+}
+
+#pagination a {
+  padding: 0px 10px;
+}
+
+footer {
+  margin: 100px 0;
+  text-align: center;
+  color: #666;
+  font-size: 17px;
+}
+
+footer a {
+  color: #888;
+}
+
+footer a:hover {
+  color: #aaa;
+}
+
+ul#archive {
+  list-style: none;
+  padding-bottom: 20px;
+  margin: 20px 0;
+}
+
+ul#archive li {
+  clear: left;
+  margin-bottom: 20px;
+}
+
+ul#archive li:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+ul#archive li time {
+  display: block;
+  float: left;
+  width: 140px;
+}
+
+ul#archive li .description {
+  float: left;
+  max-width: 428px;
+}
+
+ul#archive li .description .tagline {
+  margin: 0;
+}

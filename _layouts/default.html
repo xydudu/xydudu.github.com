@@ -1,55 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-    <title>DUDU's new Life</title>
-    <link rel="stylesheet" type="text/css" href="/css/default.css" />
-    <link  href="//fonts.googleapis.com/css?family=Vollkorn:regular,bold" rel="stylesheet" type="text/css" >
-    <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
-    <style>
-        /*
-        body { font-family: "Trebuchet MS",Verdana,Helvetica,Arial,sans-serif; color: #222222; }
-        h1 { color: red; font-family: 'Vollkorn', serif; text-shadow: 2px 2px 2px #aaa; letter-spacing: 0.066em; word-spacing: 0.15em; line-height: 1.16em;} 
-        h1 a { font-size: .5em; font-weight: 200; text-shadow: none; font-family: "Trebuchet MS",Verdana,Helvetica,Arial,sans-serif;}
-        h2 { clear: both }
-        h2 cite{ font-size: .5em; color:gray; font-width: 200 }
-        li { font-size: .8em; }
-        */
-        #foot { color:gray; font-size: .8em; clear: both }
-        #content { line-height: 1.8em}
-    </style>
-</head>
-<body>
-    <h1>DUDU's New Life <a href="http://twitter.com/xydudu">@xydudu</a></h1> 
-    <h2>{{page.title}} <cite>{{post.date}}</cite></h2>
-    <div id="content"> 
-        {{content}}
-    </div>
-    <p><a href="http://xydudu.com" >Back to Home</a></p>
-    <div id="disqus_thread"></div>
-    <p id="foot">xydudu 2010 @ Make life better than it was before!</p>
-    <script>
-        (function() {
-           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-           dsq.src = 'http://xydudu.disqus.com/embed.js';
-           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-        var disqus_shortname = 'xydudu';
-        (function () {
-          var s = document.createElement('script'); s.async = true;
-          s.src = 'http://disqus.com/forums/xydudu/count.js';
-          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-        
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-17348181-1']);
-        _gaq.push(['_trackPageview']);
+---
+layout: default
+---
 
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-</body>
-</html>
+<article id="single" class="hentry">
+  <header>
+    <h1 class="entry-title">{{ page.title }}</h1>
+    <time datetime="{{ page.date | date_to_xmlschema }}">
+      {{ page.date | date: '%d %B %Y' }}
+    </time>
+  </header>
+
+  <div class="entry-content">
+    {{ content }}
+  </div>
+</article>
+
+{% if site.related_posts != empty %}
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    {% for post in site.related_posts limit:3 %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'hansengel';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
