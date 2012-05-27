@@ -54,8 +54,8 @@ layout: default
 
 {% highlight html linenos %}
 
-	<title>Hello World</title>
-	<body>Hello World</body>
+<title>Hello World</title>
+<body>Hello World</body>
 
 {% endhighlight %}
 
@@ -65,11 +65,9 @@ layout: default
 接着上面的，再新建一个 style.css 的文件，我们加点样式看看，注意你的浏览器变化：
 
 {% highlight css linenos %}	
-
-	body {
-		color： red;
-	}
-
+body {
+    color： red;
+}
 {% endhighlight %}
 
 可以看到，当你保存style.css后，浏览器立即就做出了相应反应，这种实时反应开发结果的开发模式显然是很能提高开发效率的，这不是meteor首创，有很多类似的库与工具都能实现相似的效果，但是meteor是集体到自身内部的，你完全无需去特别的配置，非常的简单，对于初学者来讲是很是友好。
@@ -92,10 +90,10 @@ meteor 提供了一种非常方便的模板机制，让我们开发起来非常�
 
 {% highlight javascript linenos %}
 
-	if (this.Template) 
-    	Template.hello.who = function() {
-        	return 'Lian Hsueh'; 
-    	};
+if (this.Template) 
+    Template.hello.who = function() {
+        return 'Lian Hsueh'; 
+    };
 
 {% endhighlight %}
 
