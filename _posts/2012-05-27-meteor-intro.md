@@ -9,7 +9,7 @@ layout: default
 ### What?
 先很简单的介绍下meteor，它的官网是：[meteor.com](http://meteor.com)，官方的介绍是：
 
-	Meteor is a set of new technologies for building top-quality web apps in a fraction of the time, whether you're an expert developer or just getting started.
+		Meteor is a set of new technologies for building top-quality web apps in a fraction of the time, whether you're an expert developer or just getting started.
 	
 翻译成中文大概就是：Meteor 是一套让用户在短时间内搭建一个高质量网页应用的新技术，面向的用户不仅是专业的开发者，还包括刚入门者。
 
@@ -17,9 +17,11 @@ layout: default
 
 ### Features
 其官网上列了9个特点，就不一一复制了，我个人较喜欢的几个特点是：
-- Pure Javscript 这个不必多说，做为一个前端，这就是Meteor直接吸引我的主因
-- Live page updates 开发时的页面自动更新，这对开发效率是很有帮助的
-- Clean, powerful data synchronization 强大的数据同步能力，这个有人喷会有安全问题，但是不否认这个让我在开发时体验非常棒
+
+	- Pure Javscript 这个不必多说，做为一个前端，这就是Meteor直接吸引我的主因
+	- Live page updates 开发时的页面自动更新，这对开发效率是很有帮助的
+	- Clean, powerful data synchronization 强大的数据同步能力，这个有人喷会有安全问题，但是不否认这个让我在开发时体验非常棒
+
 其它的一些特点就不多说的.
 
 ### hello world
@@ -37,11 +39,11 @@ layout: default
 
 创建一个新项目，meteor会新建一个名为helloworld的目录，里面包括了三个文件:
 
-➜  helloworld  tree
-.
-├── helloword.css
-├── helloword.html
-└── helloword.js
+	➜  helloworld  tree
+	.
+	├── helloword.css
+	├── helloword.html
+	└── helloword.js
 
 你在此文件夹中启动 meteor 服务，在浏览器中访问： localhost:3000 就能看到helloworld已经成功运行了。
 
