@@ -136,8 +136,184 @@ meteor很好的解决了这个问题，简单的应用中，比如我们这个he
 
 而像一些可以同时应用于前后端的脚本，你就不需要做特别的处理了，一份代码服务于前后端，比之前后端分离肯定是要高效很多。比如一个表单的验证脚本，通常你要前端一个检测的脚本，后端也要维护一份相同功能的代码，而此时我们只需要维护一份代码就好。
 
+#### 数据
+一个完整的应用，必然要与数据打交道的，Meteor的数据通讯很棒，它操作数据也是异常的方便，如果使用过一些其它语言的ORM实现，应该能很好的去理解。
+
+下面给helloworld添加点代码，用来显示从数据库中取得到一个列表，修改 app.js，添加：
+
+{% highlight javascript linenos %}
+var NameList = new Meteor.Collection('namelist');
+if (Meteor.is_client) {
+	Template.hello.namelist = function() {
+		return NameList.find({});
+	};
+}
+{% endhighlight %}
+
+然后修改 index.html：
+
+{% highlight xml linenos %}
+<template name="hello">
+    <p>This is from template, and I am {{ who }}</p>
+    <ul>
+        {{#each namelist}}
+        <li>{{ username }}</li>
+        {{/each}}
+    </ul>
+</template>
+{% endhighlight %}
+
+数据库、表，这些都是直接与你代码collection对应，你完全不需要去在意，在意你的代码就行了。
+
+此时数据库还没有数据，页面中也不会显示什么，要添加数据很简单，你可以直接在浏览器console中执行 
+
+	Namelist.insert({username: 'xyududu'});
+
+来添加一些数据，相应的也有remove与update方法。meteor较神奇的是，你对无论你在何地对数据库的操作都将实时的反应在页面中，所以你可以很方便的在开发时利用浏览器console来测试你的应用。
+
 ### 实例讲解	
 helloworld实在是太过简单了，完全不能领略meteor的强大，下面来完全一个完整的应用，看看meteor在实际使用中的表现。
 
+从实例着手，一般就是做个blog了，恰巧w3ctech长沙站的各位哥也要求有这么一个blog来分享聚合一些技术文章。索性，就开始写这么一个blog程序，并让其可在实际中应用。
 
+源码可到[github](https://github.com/xydudu/a-meteor-blog)获取，这里只提几个要点。
+
+#### 文件结构
+要做一个较正式的应用，文件显然不能乱放，特别是我们前端，涉及众多javascrpt、css、images等等，如果随意摆放越往后就越头痛。我这里简单规划的一个文件结构如下：
+
+	➜  w3ctech  tree
+	.
+	├── client //文件夹，浏览器端使用
+	├── server //文件夹，服务端使用
+	└── static //文件夹，主要存放图片
+
+#### 数据结构
+简单点搞，先就一个文章的数据表结构如下：
 	
+	Article -- {
+		title: String,
+		author: String,
+		content: String,
+		tags: [String, …],
+		createtime: Number
+	}
+
+
+#### 与Backbone结合
+做web application，选一个好的前端MVC框架，会带来很多便利，显然 Meteor 与 Backbone 的结合是非常的理所应当。Meteor的官方也把 Backbone 做为一个内置 package。可以在命令行中很方便的给你的应用添加 backbone 支持:
+
+	$ meteor add backbone
+
+另外我写css一般都用less，所以顺便我也把 less 引入进来：
+	
+	$ meteor add less
+
+meteor 现在可用命令添加的 package 有蛮多了，可至其官网查询。
+
+好，继续说 Backbone， 先看下面代码：
+
+{% highlight javascript linenos %}
+var Blog = Backbone.Router.extend({
+    routes: {
+        "admin": "backend",
+        ":article_id": "showArticle",
+        "": 'index'
+    },
+    index: function() {
+        Session.set("article_id", null);
+        Session.set("backend", null);
+    },
+    backend: function() {
+		if ($.cookie('admin')) {
+            Session.set("backend", 'post');
+        } else {
+            Session.set("backend", 'login');
+        }
+    },
+    showArticle: function ( _id ) {
+        Session.set("article_id", _id);
+        Session.set("backend", null);
+    },
+    changeTo: function( _id ) {
+        this.navigate(_id, true);
+    }
+    
+});
+
+Router = new Blog();
+Meteor.startup(function () {
+	Backbone.history.start({pushState: true});
+});
+{% endhighlight %}
+ 
+如果你之前用 Backbone 写过应用之类的，应该能很快理解上面的代码，开启一个全局路由，捕获 url 的变化而执行相应的方法。这样就很方便的控制应用的显示，从而模拟出传统页面的切换。
+
+#### 内容的展示
+Meteor 负责页面渲染主要是通过模板，可以说你了解了如何控制模板，你就能用 Meteor 写出牛B的应用。其实基本上所有的富前端应用都是非常的倚重模板的。
+
+Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui，这两个都是负责把数据组合到模板并渲染到页面。我此次的 demo 大量的使用了 Template。
+
+拿列表页来说，主要功能就是把文章的标题与时间以列表的形式显示在页面中。查看其模板代码:
+
+{% highlight xml linenos %}
+<template name="list">
+<ul>
+    {{#each list}} 
+    <li>
+    <time datetime="{{createtime}}">{{ formarttime }}</time>
+    <a 
+        id="{{ _id }}"
+        href="/{{ _id }}">{{ title }}</a></li>
+    {{/each}} 
+</ul>
+</template>
+{% endhighlight %}
+
+然后在javascrpt文件中可以直接以 Template.list 来操作这块模板。比如这个例子中：
+
+{% highlight javascript linenos %}
+var listTpl = Template.list;
+listTpl.list = function() {
+    return Article.find({});
+};
+listTpl.formarttime = function() {
+    return moment( this.createtime ).fromNow();
+}
+listTpl.events = {
+    'click li>a': function( _e ) {
+        var key = _e.target.id;
+        Router.changeTo( key );
+        return false;
+    }
+};
+{% endhighlight %}
+
+指定 list 数据，还有一个 formarttime 是格式化时间，在模板中可以直接以 {{ formarttime }} 来调用。
+
+#### events
+你的应用要与用户交互，必然就离不开事件，根据用户的操作而触发不同的事件来响应用户。 Meteor 的事件在模板中可以很方便的绑定，其实本质上应该是一个总的委托在模板上的事件。这种处理方式现在应该很常见了，比如 jquery 的 delegate()， Backbone 模板的事件处理也是类似的。
+
+Meteor的事件可以直接绑在 Template 对象的 events 属性上。如上面的：
+
+{% highlight javascript linenos %}
+listTpl.events = {
+    'click li>a': function( _e ) {
+        var key = _e.target.id;
+        Router.changeTo( key );
+        return false;
+    }
+};
+{% endhighlight %}
+
+
+#### deploy or host yourself
+
+应用写完了，如果你打算把服务托管到 meteor 上，那就非常方便，你可以直接命令行：
+
+$ meteor deploy yourappname.meteor.com
+
+上传完成后，你就可以直接以：yourappname.meteor.com 来访问你的应用了。
+
+而且很舒服的一点是，你不需要去管你的javascript文件与css文件是否合并，是否压缩，因为这些都是 meteor 会自动完成的。
+
+当然你可以把应用托管在你自己的服务器中，你可以用 meteor bundle 来进行代码打包，然后就可以方便的上传到你自己的服务器了。
