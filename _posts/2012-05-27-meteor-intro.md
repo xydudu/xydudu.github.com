@@ -18,7 +18,7 @@ layout: default
 ### Features
 其官网上列了9个特点，就不一一复制了，我个人较喜欢的几个特点是：
 
-* Pure Javscript 这个不必多说，做为一个前端，这就是Meteor直接吸引我的主因
+* Pure Javascript 这个不必多说，做为一个前端，这就是Meteor直接吸引我的主因
 * Live page updates 开发时的页面自动更新，这对开发效率是很有帮助的
 * Clean, powerful data synchronization 强大的数据同步能力，(这个有人喷会有安全问题，但是不否认这个让我在开发时体验非常棒)
 
@@ -75,7 +75,7 @@ body {
 #### Template
 meteor 提供了一种非常方便的模板机制，让我们开发起来非常的舒服，比如上面的例子，我们再扩展开来，编辑index.html:
 
-{% highlight html linenos %}
+{% highlight text linenos %}
 <head>…</head>
 <body>
 	<h1>Hello World</h1>
