@@ -79,7 +79,7 @@ meteor 提供了一种非常方便的模板机制，让我们开发起来非常�
 <head>…</head>
 <body>
 	<h1>Hello World</h1>
-	{{> hello }}
+	\{\{> hello \}\}
 </body>
 <template name="hello">
 	<p>This is from template</p>
