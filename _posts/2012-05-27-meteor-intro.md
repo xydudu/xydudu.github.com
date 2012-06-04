@@ -75,15 +75,17 @@ body {
 #### Template
 meteor 提供了一种非常方便的模板机制，让我们开发起来非常的舒服，比如上面的例子，我们再扩展开来，编辑index.html:
 
-{% highlight template linenos %}
+{% highlight html linenos %}
+{% raw %}
 <head>…</head>
 <body>
 	<h1>Hello World</h1>
-	\{\{> hello \}\}
+	{{> hello }}
 </body>
 <template name="hello">
 	<p>This is from template</p>
 </template>
+{% endraw%}
 {% endhighlight %}
 
 当然，meteor也可以很方便的从javascript文件中定义变量，下面我们新建一个javascript文件 app.js，并写入：
@@ -150,6 +152,8 @@ if (Meteor.is_client) {
 
 然后修改 index.html：
 
+{% highlight html linenos %}
+{% raw %}
     <template name="hello">
         <p>This is from template, and I am {{ who }}</p>
         <ul>
@@ -158,6 +162,8 @@ if (Meteor.is_client) {
             {{/each}}
         </ul>
     </template>
+{% endraw %}
+{% endhighlight %}
 
 数据库、表，这些都是直接与你代码collection对应，你完全不需要去在意，在意你的代码就行了。
 
@@ -251,6 +257,8 @@ Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui�
 
 拿列表页来说，主要功能就是把文章的标题与时间以列表的形式显示在页面中。查看其模板代码:
 
+{% highlight html linenos %}
+{% raw %}
     <template name="list">
     <ul>
         {{#each list}} 
@@ -262,6 +270,8 @@ Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui�
         {{/each}} 
     </ul>
     </template>
+{& endraw %}
+{% endhighlight %}
 
 然后在javascrpt文件中可以直接以 Template.list 来操作这块模板。比如这个例子中：
 
