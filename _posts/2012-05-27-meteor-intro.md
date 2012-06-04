@@ -79,9 +79,7 @@ meteor 提供了一种非常方便的模板机制，让我们开发起来非常�
 <head>…</head>
 <body>
 	<h1>Hello World</h1>
-    {% raw %}
 	{{> hello }}
-    {% endraw %}
 </body>
 <template name="hello">
 	<p>This is from template</p>
@@ -99,11 +97,11 @@ if (this.Template)
 
 {% endhighlight %}
 
-然后在html中通过 {% raw %}{{变量名}}{% endraw %} 来访问javascript文件定义的变量值。如：
+然后在html中通过 {{ "{{变量名" }}}} 来访问javascript文件定义的变量值。如：
 
 {% highlight xml linenos %}
     <template name="hello">
-        <p>This is from template, and I am {% raw %}{{ who }}{% endraw %}</p>
+        <p>This is from template, and I am {{ "{{who" }}}}</p>
     </template>
 {% endhighlight %}
 
@@ -157,13 +155,11 @@ if (Meteor.is_client) {
 {% highlight xml linenos %}
 
     <template name="hello">
-        <p>This is from template, and I am {% raw %}{{ who }}{% endraw %}</p>
+        <p>This is from template, and I am {{ "{{who" }}}}</p>
         <ul>
-            {% raw %}
-            {{#each namelist}}
-            <li>{{ username }}</li>
-            {{/each}}
-            {% endraw %}
+            {{ "{{#each namelist" }}}}
+            <li>{{ "{{ username " }}}}</li>
+            {{ "{{/each" }}}}
         </ul>
     </template>
 {% endhighlight %}
@@ -263,7 +259,6 @@ Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui�
 {% highlight html linenos %}
     <template name="list">
     <ul>
-        {% raw %}
         {{#each list}} 
         <li>
         <time datetime="{{createtime}}">{{ formarttime }}</time>
@@ -271,7 +266,6 @@ Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui�
             id="{{ _id }}"
             href="/{{ _id }}">{{ title }}</a></li>
         {{/each}} 
-        {% endraw %}
     </ul>
     </template>
 {% endhighlight %}
