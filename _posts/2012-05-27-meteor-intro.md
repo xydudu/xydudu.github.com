@@ -75,7 +75,7 @@ body {
 #### Template
 meteor 提供了一种非常方便的模板机制，让我们开发起来非常的舒服，比如上面的例子，我们再扩展开来，编辑index.html:
 
-{% highlight text linenos %}
+{% highlight template linenos %}
 <head>…</head>
 <body>
 	<h1>Hello World</h1>
@@ -317,3 +317,6 @@ $ meteor deploy yourappname.meteor.com
 而且很舒服的一点是，你不需要去管你的javascript文件与css文件是否合并，是否压缩，因为这些都是 meteor 会自动完成的。
 
 当然你可以把应用托管在你自己的服务器中，你可以用 meteor bundle 来进行代码打包，然后就可以方便的上传到你自己的服务器了。
+
+### PPT
+<div class="prezi-player"><style type="text/css" media="screen">.prezi-player { width: 550px; } .prezi-player-links { text-align: center; }</style><object id="prezi_ao57nxmdxlfc" name="prezi_ao57nxmdxlfc" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400"><param name="movie" value="http://prezi.com/bin/preziloader.swf"/><param name="allowfullscreen" value="true"/><param name="allowscriptaccess" value="always"/><param name="bgcolor" value="#ffffff"/><param name="flashvars" value="prezi_id=ao57nxmdxlfc&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"/><embed id="preziEmbed_ao57nxmdxlfc" name="preziEmbed_ao57nxmdxlfc" src="http://prezi.com/bin/preziloader.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="550" height="400" bgcolor="#ffffff" flashvars="prezi_id=ao57nxmdxlfc&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"></embed></object><div class="prezi-player-links"><p><a title="Meteor Intro" href="http://prezi.com/ao57nxmdxlfc/meteor-intro/">Meteor Intro</a> on <a href="http://prezi.com">Prezi</a></p></div></div>
