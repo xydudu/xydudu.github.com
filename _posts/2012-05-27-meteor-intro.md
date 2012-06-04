@@ -79,7 +79,7 @@ meteor 提供了一种非常方便的模板机制，让我们开发起来非常�
 <head>…</head>
 <body>
 	<h1>Hello World</h1>
-	{{> hello }}
+	{{ "{{> hello " }}}}
 </body>
 <template name="hello">
 	<p>This is from template</p>
@@ -259,13 +259,13 @@ Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui�
 {% highlight html linenos %}
     <template name="list">
     <ul>
-        {{#each list}} 
+        {{ "{{#each list" }}}} 
         <li>
-        <time datetime="{{createtime}}">{{ formarttime }}</time>
+        <time datetime="{{ "{{createtime" }}}}">{{ "{{formarttime" }}}}</time>
         <a 
-            id="{{ _id }}"
-            href="/{{ _id }}">{{ title }}</a></li>
-        {{/each}} 
+            id="{{ "{{ _id " }}}}"
+            href="/{{ "{{ _id" }}}}">{{ "{{ title " }}}}</a></li>
+        {{ "{{/each" }}}} 
     </ul>
     </template>
 {% endhighlight %}
@@ -289,7 +289,7 @@ listTpl.events = {
 };
 {% endhighlight %}
 
-指定 list 数据，还有一个 formarttime 是格式化时间，在模板中可以直接以 {{ formarttime }} 来调用。
+指定 list 数据，还有一个 formarttime 是格式化时间，在模板中可以直接以 {{ "{{formarttime" }}}} 来调用。
 
 #### events
 你的应用要与用户交互，必然就离不开事件，根据用户的操作而触发不同的事件来响应用户。 Meteor 的事件在模板中可以很方便的绑定，其实本质上应该是一个总的委托在模板上的事件。这种处理方式现在应该很常见了，比如 jquery 的 delegate()， Backbone 模板的事件处理也是类似的。
