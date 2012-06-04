@@ -99,11 +99,9 @@ if (this.Template)
 
 然后在html中通过 {{变量名}} 来访问javascript文件定义的变量值。如：
 
-{% highlight html linenos %}
-<template name="hello">
-    <p>This is from template, and I am {{ who }}</p>
-</template>
-{% endhighlight %}
+    <template name="hello">
+        <p>This is from template, and I am {{ who }}</p>
+    </template>
 
 meteor的模板系统是非常强大的，后面在实例中可以慢慢体会。
 
@@ -152,16 +150,14 @@ if (Meteor.is_client) {
 
 然后修改 index.html：
 
-{% highlight xml linenos %}
-<template name="hello">
-    <p>This is from template, and I am {{ who }}</p>
-    <ul>
-        {{#each namelist}}
-        <li>{{ username }}</li>
-        {{/each}}
-    </ul>
-</template>
-{% endhighlight %}
+    <template name="hello">
+        <p>This is from template, and I am {{ who }}</p>
+        <ul>
+            {{#each namelist}}
+            <li>{{ username }}</li>
+            {{/each}}
+        </ul>
+    </template>
 
 数据库、表，这些都是直接与你代码collection对应，你完全不需要去在意，在意你的代码就行了。
 
@@ -255,19 +251,17 @@ Meteor 的模板上面的提过一个是  Template，还有一个是 Meteor.ui�
 
 拿列表页来说，主要功能就是把文章的标题与时间以列表的形式显示在页面中。查看其模板代码:
 
-{% highlight xml linenos %}
-<template name="list">
-<ul>
-    {{#each list}} 
-    <li>
-    <time datetime="{{createtime}}">{{ formarttime }}</time>
-    <a 
-        id="{{ _id }}"
-        href="/{{ _id }}">{{ title }}</a></li>
-    {{/each}} 
-</ul>
-</template>
-{% endhighlight %}
+    <template name="list">
+    <ul>
+        {{#each list}} 
+        <li>
+        <time datetime="{{createtime}}">{{ formarttime }}</time>
+        <a 
+            id="{{ _id }}"
+            href="/{{ _id }}">{{ title }}</a></li>
+        {{/each}} 
+    </ul>
+    </template>
 
 然后在javascrpt文件中可以直接以 Template.list 来操作这块模板。比如这个例子中：
 
@@ -319,4 +313,4 @@ $ meteor deploy yourappname.meteor.com
 当然你可以把应用托管在你自己的服务器中，你可以用 meteor bundle 来进行代码打包，然后就可以方便的上传到你自己的服务器了。
 
 ### PPT
-<div class="prezi-player"><style type="text/css" media="screen">.prezi-player { width: 550px; } .prezi-player-links { text-align: center; }</style><object id="prezi_ao57nxmdxlfc" name="prezi_ao57nxmdxlfc" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400"><param name="movie" value="http://prezi.com/bin/preziloader.swf"/><param name="allowfullscreen" value="true"/><param name="allowscriptaccess" value="always"/><param name="bgcolor" value="#ffffff"/><param name="flashvars" value="prezi_id=ao57nxmdxlfc&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"/><embed id="preziEmbed_ao57nxmdxlfc" name="preziEmbed_ao57nxmdxlfc" src="http://prezi.com/bin/preziloader.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="550" height="400" bgcolor="#ffffff" flashvars="prezi_id=ao57nxmdxlfc&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"></embed></object><div class="prezi-player-links"><p><a title="Meteor Intro" href="http://prezi.com/ao57nxmdxlfc/meteor-intro/">Meteor Intro</a> on <a href="http://prezi.com">Prezi</a></p></div></div>
+<div class="prezi-player"><style type="text/css" media="screen">.prezi-player { width: 650px; } .prezi-player-links { text-align: center; }</style><object id="prezi_ao57nxmdxlfc" name="prezi_ao57nxmdxlfc" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400"><param name="movie" value="http://prezi.com/bin/preziloader.swf"/><param name="allowfullscreen" value="true"/><param name="allowscriptaccess" value="always"/><param name="bgcolor" value="#ffffff"/><param name="flashvars" value="prezi_id=ao57nxmdxlfc&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"/><embed id="preziEmbed_ao57nxmdxlfc" name="preziEmbed_ao57nxmdxlfc" src="http://prezi.com/bin/preziloader.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="550" height="400" bgcolor="#ffffff" flashvars="prezi_id=ao57nxmdxlfc&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"></embed></object><div class="prezi-player-links"><p><a title="Meteor Intro" href="http://prezi.com/ao57nxmdxlfc/meteor-intro/">Meteor Intro</a> on <a href="http://prezi.com">Prezi</a></p></div></div>
