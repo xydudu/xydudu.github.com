@@ -11,8 +11,8 @@ After a bit of trial( 努力，试验 ) and lot of error I think I came up with 
 
 经过不懈的努力，我想我想出了一些东西可以工作于各种浏览器中：
 
-- in IE use new Image().src to preload all component types
-- in all other browsers use dynamic <object> tag
+1. in IE use new Image().src to preload all component types
+2. in all other browsers use dynamic <object> tag
 
 
 ### Code and demo
