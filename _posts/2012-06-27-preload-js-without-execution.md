@@ -14,7 +14,8 @@ After a bit of trial( 努力，试验 ) and lot of error I think I came up with 
 - in IE use new Image().src to preload all component types
 - in all other browsers use dynamic <object> tag
 
-## Code and demo
+
+### Code and demo
 
 Here's the final solution, below are some details.
 
@@ -24,6 +25,7 @@ In this example I assume the page prefetches after onload some components that w
 
 例子中假定页面加载完成后预加载一些下一个页面需要的组件，这些组件包括CSS, JS 和 PNG。
 
+{% highlight javascript linenos %}
 	window.onload = function() {
 	    var 
 	    i = 0,
@@ -52,8 +54,9 @@ In this example I assume the page prefetches after onload some components that w
 	        document.body.appendChild(o);
 	    }
 	};
-	
-## Comments
+{% endhighlight %}
+
+### Comments
 
 - new Image().src doesn't do the job in FF because it has a separate cache for images. Didn't seem to work in safari either where CSS and JS were requested on the second page where they should've been cached
 - new Image().src 在FF下不会正常的工作，因为其对images有单独的缓存机制。同样的好像也不在safari中工作，第二个页面中请求的CSS与JS并没有被缓存。
@@ -66,7 +69,7 @@ That's about it. Below are some unsuccessful attempts I tried which failed for v
 
 就是这样，下面是我的一些不成功的尝试，不同的浏览器不同的失败原因。
 
-## Other unsuccessful attempts
+### Other unsuccessful attempts
 
 1. I was actually inspired( 鼓舞 ) by [this post by Ben Cherry](http://www.adequatelygood.com/2010/1/Preloading-JS-and-CSS-as-Print-Stylesheets) where he loads CSS and JS in a print stylesheet. Clever hack, unfortunately didn't work in Chrome which caches the JS but doesn't execute it on the next page.
 
@@ -85,7 +88,7 @@ That worked for the most parts but not in FF3.6 where the Javascript was never r
 
 3. A dynamic link 'prefetch' didn't do anything, not even in FF which is probably the only browser that support this.
 
-## In conclusion
+### In conclusion
 
 I believe this is a solution I could be comfortable with, although it involves( 包含 ) user agent sniffing( 嗅探 ). It certainly looks less hacky than loading JS as CSS anyways. And object elements are meant( 意味，打算 ) to load any type of component so no semantic( 语义的 ) conflict( 冲突 ) here I don't believe. Feel free to test and report any edge cases or browser/OS combos. (JS errors in IE on the second page are ok, because I'm using console.log in the preloaded javascript)
 
