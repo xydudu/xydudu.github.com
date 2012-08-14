@@ -7,7 +7,7 @@ html, body {
 
 body {
   font: 16px/1.62 "Rosario", "Xin Gothic", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
-  color: #444;
+  color: #666;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -41,7 +41,7 @@ a:hover {
 pre, blockquote {
   border-left: 1px solid #ccc;
   margin: 0 0 20px 0px;
-  padding-left: 20px;
+  padding: 10px 15px;
 }
 
 pre, tt, code {
@@ -176,7 +176,7 @@ ul#archive {
 
 ul#archive li {
   clear: left;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 ul#archive li:after {
@@ -202,6 +202,6 @@ ul#archive li .description .tagline {
   margin: 0;
 }
 
-.highlight {
-    background-color: #fafafa;
+.highlight .lineno {
+    color: #ddd;
 }
