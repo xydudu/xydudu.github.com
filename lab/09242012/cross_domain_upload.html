@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Cross_domain_upload</title>
+        <script src="http://honey.hunantv.com/i/js/lib/jquery.js"></script>
+        <style type="text/css" media="screen">
+            .bar {
+                height: 20px;
+                width: 200px;
+                background-color: #efefef;
+            }
+            .bar > div {
+                background-color: #222;
+                height: 20px;
+                width: 0;
+            }
+            iframe {
+                display: none;
+            }
+            #result {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+         <form action="http://test_server.cnodejs.net/iframe" method="post" enctype="multipart/form-data" target="x"  >
+            <p><input type="submit" value="Start"></p>
+         </form>
+         <div class="bar"><div id="bar"></div></div>
+         <div id="percent"></div>
+         <h3>Result from Remote Server</h3>
+         <div id="result"></div>
+         <iframe name="x" id="x"></iframe>
+         <script>
+            $(function() {
+                var 
+                iframe = $('#x'),
+                bar = $('#bar'),
+                percent = $('#percent'),
+                result = $('#result')
+                $('form').submit(function() {
+                    var 
+                    w = 200,
+                    barw = 0,
+                    i = 0,
+                    t = setInterval(function() {
+                        var 
+                        query = window.location.hash
+                        if (query) {
+                            clearInterval(t)
+                            t = null
+                            bar.width(200)
+                            percent.text('100%')
+                            result.text(query) 
+                            window.location.hash = ''
+                            return
+                        }
+                        barw += (w-barw)*Math.pow(0.3, (i/10) + 1)
+                        bar.width(barw)
+                        percent.text(((barw*100)/w).toFixed(0) +'%')
+                        i ++
+                    }, 500) 
+
+                })
+            })
+         </script>
+    </body>
+</html>
