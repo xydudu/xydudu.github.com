@@ -75,7 +75,7 @@ layout: default
  
  关于上面的坑，你应该会很有兴趣阅读一下这个帖子：[IE form target broken when using DOM/AJAX](http://forums.digitalpoint.com/showthread.php?t=107314)
  
- ### 从iframe中取到接口返回的结果
+ ## 从iframe中取到接口返回的结果
  
  利用form提交数据到隐藏的ifrmae中来提交数据到API，后面一步当然是你得知道提交后的结果，是成功了还是失败了，或者你还需要知道一些其它从服务器传来的信息。
  
