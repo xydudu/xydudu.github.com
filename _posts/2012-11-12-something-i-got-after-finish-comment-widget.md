@@ -69,7 +69,11 @@ layout: default
         
  好吧，我竟然把代码贴出来了。这显得我太有诚意了，但是这只是一个片段，很显然的功能就是构建一个ifram与一个form，插入body中。当然，可怜的form中还被插了许多的type=hidden的input，这些都是一些必要的参数，如果你想借鉴这一些代码，千万记住有些代码你是需要修改的。
  
- 上面的代码如果仔细看的话，还会有少许的疑惑。iframe与form的构建方式，为何要不同呢？当然可以写成一样的，比如form也可以像iframe一般 $('<form>把里面的东西一股脑全塞在这</form>')。但是这种方式不好看，你看现在我构建form的方式是多么的美丽。
+ 上面的代码如果仔细看的话，还会有少许的疑惑。iframe与form的构建方式，为何要不同呢？当然可以写成一样的，比如form也可以像iframe一般 
+		
+		$('<form>把里面的东西一股脑全塞在这</form>')
+		
+但是这种方式不好看，你看现在我构建form的方式是多么的美丽。
  
  哈，那为何iframe那是那么丑陋的方式来写呢？嗯，恭喜你，因为这里有一个坑。在ie6下，利用javascript动态插入的iframe，属性很容易broken，这算是一个bug。解决方式就是你最好把整个iframe一次性的插入页面中，或者需要的时候（比如在提交表单时）检查一下iframe的name是否与你预想中的一样，不同的话，再指定一次name。
  
@@ -140,7 +144,13 @@ layout: default
 
 合理使用 location.hash来跳到对应的item也是需要好好设计一下的功能，在评论被翻页后，如何聚焦到刚回复的评论item。如何在用户分享某条评论链接给别人时，能让快速的取得并聚焦到正确的评论item。
 
+## 其它
 
+window.name 也是一种很不错的跨域跨浏览器方式，可以参考 [janky.post](flotcharts.org)。而stackoverflow上也一如既往的有很多可供参考的优秀方案，比如：
+
+[http://stackoverflow.com/questions/298745/how-do-i-send-a-cross-domain-post-request-via-javascript](http://stackoverflow.com/questions/298745/how-do-i-send-a-cross-domain-post-request-via-javascript)
+
+[http://stackoverflow.com/questions/5251689/cross-domain-post-query-using-cross-origin-resource-sharing-getting-no-data-back](http://stackoverflow.com/questions/5251689/cross-domain-post-query-using-cross-origin-resource-sharing-getting-no-data-back)
 
  
  
